@@ -4,12 +4,12 @@ class AssistantRepository {
   final user = Assistant(
     id: 0,
     username: 'user',
-    firstName: 'Nick',
+    firstName: 'Nicholas',
     lastName: 'Rallakis',
     bookmarkedAssistants: [],
     rating: 8,
-    description: '',
-    title: '',
+    description: 'Bsc in Maths. Can also assist in Physics and Chemistry. I also teach Algorithms, Data Structures & Programming languages.',
+    title: 'Maths',
     subjects: [],
   );
 
@@ -75,5 +75,18 @@ class AssistantRepository {
 
   List<Assistant> getAssistantsBySubject(String subject) {
     return _assistants.where((assistant) => assistant.subjects.contains(subject)).toList();
+  }
+
+  List<Assistant> getSavedAssistants() {
+    // In real app get from cache or from an api
+    return [
+      _assistants[0],
+      _assistants[1],
+      _assistants[2],
+      _assistants[1],
+      _assistants[2],
+      _assistants[1],
+      _assistants[2],
+    ];
   }
 }
