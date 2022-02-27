@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:plesson/ui/components/assistant_card.dart';
-import 'package:plesson/viewmodels/saved_assistants_viewmodel.dart';
+import 'package:plesson/viewmodels/bookmarked_assistants_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 import '../../routes.dart' as routes;
 
-class SavedAssistantsScreen extends StatelessWidget {
-  const SavedAssistantsScreen({Key? key}) : super(key: key);
+class BookmarkedAssistantsScreen extends StatelessWidget {
+  const BookmarkedAssistantsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    SavedAssistantsViewModel viewModel = context.watch<SavedAssistantsViewModel>();
+    BookmarkedAssistantsViewModel viewModel = context.watch<BookmarkedAssistantsViewModel>();
 
     final itemCount = viewModel.assistants.length;
     return Scaffold(

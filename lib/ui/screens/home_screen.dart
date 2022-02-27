@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plesson/ui/screens/saved_assistants_screen.dart';
+import 'package:plesson/ui/screens/bookmarked_assistants_screen.dart';
 import 'package:plesson/ui/screens/search_page.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _pages = const [
-    SavedAssistantsScreen(),
+    BookmarkedAssistantsScreen(),
     SearchAssistantsScreen(),
     ChatSessionsScreen(),
   ];

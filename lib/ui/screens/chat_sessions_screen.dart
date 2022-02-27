@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:plesson/core/extensions/helpers.dart';
 import 'package:plesson/data/repositories/chat_repository.dart';
 import 'package:plesson/ui/components/avatar.dart';
 import 'package:plesson/viewmodels/chat_viewmodel.dart';
@@ -41,8 +43,8 @@ class ChatListTile extends StatelessWidget {
         name: session.from.fullName,
       ),
       title: Text(session.from.fullName),
-      subtitle: Text(session.messages[0].text),
-      trailing: Text('11:15 AM'),
+      subtitle: Text(session.lastMessage),
+      trailing: Text(session.lastTimestamp),
       onTap: () => Navigator.pushNamed(context, routes.chat, arguments: session.from),
     );
   }

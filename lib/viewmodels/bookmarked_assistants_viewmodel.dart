@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plesson/data/models/assistant.dart';
 import 'package:plesson/data/repositories/assistants_repository.dart';
 
-class SavedAssistantsViewModel extends ChangeNotifier {
+class BookmarkedAssistantsViewModel extends ChangeNotifier {
   late AssistantRepository _repository;
 
   List<Assistant> get assistants => _repository.savedAssistants;
@@ -17,7 +17,7 @@ class SavedAssistantsViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  SavedAssistantsViewModel(AssistantRepository repository) {
+  BookmarkedAssistantsViewModel(AssistantRepository repository) {
     _repository = repository;
   }
 }

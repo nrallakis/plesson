@@ -211,10 +211,7 @@ class _PersonalInfo extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: [
               InfoCard(title: 'Description', text: assistant.description),
-              InfoCard(
-                title: 'Contact',
-                text: assistant.contactDetails,
-              ),
+              InfoCard(title: 'Contact', text: assistant.contactDetails),
               InfoCard(title: 'Education', text: assistant.educationDetails),
             ],
           ),

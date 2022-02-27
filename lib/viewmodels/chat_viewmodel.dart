@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart';
-import 'package:plesson/core/extensions/chatX.dart';
+import 'package:plesson/core/extensions/chat.dart';
 import 'package:plesson/core/utils.dart';
 import 'package:plesson/data/models/assistant.dart';
 import 'package:plesson/data/repositories/assistants_repository.dart';
@@ -10,7 +10,9 @@ class ChatViewModel extends ChangeNotifier {
   //Used on chatSessionsScreen
   List<ChatSession> _chatSessions = [];
 
-  List<ChatSession> get chatSessions => _chatSessions;
+  List<ChatSession> get chatSessions {
+    return _chatSessions;
+  }
 
   //Used on messagesScreen
   ChatSession? currentSession;
@@ -30,7 +32,7 @@ class ChatViewModel extends ChangeNotifier {
     currentSession = _chatSessions.firstWhere(
       (session) => session.from == assistant,
       orElse: () {
-        ChatSession newSession = ChatSession(from: assistant, lastMessage: "", messages: []);
+        ChatSession newSession = ChatSession(from: assistant, messages: []);
         _chatSessions.add(newSession);
         return newSession;
       },
@@ -39,6 +41,9 @@ class ChatViewModel extends ChangeNotifier {
 
   void addMessage(TextMessage message) {
     currentSession?.messages.insert(0, message);
+    _chatSessions.sort(
+      (s1, s2) => s2.messages.first.createdAt!.compareTo(s1.messages.first.createdAt!),
+    );
     notifyListeners();
   }
 

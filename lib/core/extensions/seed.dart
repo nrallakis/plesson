@@ -1,5 +1,5 @@
 import 'package:flutter_chat_types/flutter_chat_types.dart';
-import 'package:plesson/core/extensions/chatX.dart';
+import 'package:plesson/core/extensions/chat.dart';
 import 'package:plesson/data/models/assistant.dart';
 import 'package:plesson/data/repositories/assistants_repository.dart';
 import 'package:plesson/data/repositories/chat_repository.dart';
@@ -106,7 +106,6 @@ final _assistants = [
 final _chatSessions = [
   ChatSession(
     from: _assistants[1],
-    lastMessage: "Εγινε ευχαριστώ",
     messages: [
       TextMessage(
         author: _assistants[1].toChatUser(),
@@ -134,7 +133,7 @@ final _chatSessions = [
       ),
     ],
   ),
-  ChatSession(from: _assistants[2], lastMessage: "Εγινε ευχαριστώ", messages: [
+  ChatSession(from: _assistants[2], messages: [
     TextMessage(
       author: _assistants[2].toChatUser(),
       createdAt: DateTime.now().add(const Duration(minutes: 3)).millisecondsSinceEpoch,
