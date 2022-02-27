@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../routes.dart';
+
 class OpenAppScreen extends StatelessWidget {
   const OpenAppScreen({Key? key}) : super(key: key);
 
@@ -18,7 +20,7 @@ class OpenAppScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () { Navigator.pushNamed(context, savedAssistants);},
                   child: Text(
                     "Log-in",
                     style: GoogleFonts.roboto(),
