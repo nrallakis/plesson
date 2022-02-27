@@ -29,7 +29,7 @@ class AssistantCard extends StatelessWidget {
             ListTile(
               leading: Avatar(name: assistant.firstName),
               title: Text(
-                "${assistant.firstName} ${assistant.lastName}",
+                assistant.fullName,
                 style: const TextStyle(fontWeight: FontWeight.w600),
               ),
               subtitle: Column(

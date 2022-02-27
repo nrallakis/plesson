@@ -4,8 +4,13 @@ import 'package:plesson/constants.dart';
 
 class Avatar extends StatelessWidget {
   final String name;
+  final double size;
 
-  const Avatar({Key? key, required this.name}) : super(key: key);
+  const Avatar({
+    required this.name,
+    this.size = 60,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +19,19 @@ class Avatar extends StatelessWidget {
         child: Text(
           name.characters.first,
           style: GoogleFonts.roboto(
-            textStyle: const TextStyle(
+            textStyle: TextStyle(
               color: avatarTextColor,
-              fontSize: 22,
+              fontSize: size / 2.4,
             ),
           ),
         ),
       ),
-      width: 60,
-      height: 60,
-      decoration: const BoxDecoration(color: avatarBackground, shape: BoxShape.circle),
+      width: size,
+      height: size,
+      decoration: const BoxDecoration(
+        color: avatarBackground,
+        shape: BoxShape.circle,
+      ),
     );
   }
 }
