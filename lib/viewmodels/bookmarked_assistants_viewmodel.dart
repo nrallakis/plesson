@@ -5,15 +5,15 @@ import 'package:plesson/data/repositories/assistants_repository.dart';
 class BookmarkedAssistantsViewModel extends ChangeNotifier {
   late AssistantRepository _repository;
 
-  List<Assistant> get assistants => _repository.savedAssistants;
+  List<Assistant> get bookmarkedAssistants => _repository.bookmarkedAssistants;
 
   void save(Assistant assistant) {
-    _repository.savedAssistants.add(assistant);
+    bookmarkedAssistants.add(assistant);
     notifyListeners();
   }
 
   void remove(Assistant assistant) {
-    assistants.remove(assistant);
+    bookmarkedAssistants.remove(assistant);
     notifyListeners();
   }
 

@@ -9,13 +9,15 @@ class AssistantCard extends StatelessWidget {
   final VoidCallback? onBookmarkTapped;
   final VoidCallback? onMessageTapped;
   final VoidCallback? onMoreInfoTapped;
+  final bool isBookmarked;
 
   const AssistantCard({
     Key? key,
     required this.assistant,
+    required this.isBookmarked,
     this.onBookmarkTapped,
     this.onMessageTapped,
-    this.onMoreInfoTapped
+    this.onMoreInfoTapped,
   }) : super(key: key);
 
   @override
@@ -76,7 +78,7 @@ class AssistantCard extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     onPressed: onBookmarkTapped,
                     icon: Icon(
-                      Icons.bookmark,
+                      isBookmarked ? Icons.bookmark : Icons.bookmark_border,
                       color: Theme.of(context).primaryColor,
                     ),
                   )

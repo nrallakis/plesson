@@ -16,14 +16,14 @@ class AssistantRepository {
     facebook: 'Nicholas Rallakis',
   );
   List<Assistant> assistants = [];
-  List<Assistant> savedAssistants = [];
+  List<Assistant> get bookmarkedAssistants => currentUser.bookmarkedAssistants;
 
   List<Assistant> getAssistantsBySubject(String subject) {
     return assistants.where((assistant) => assistant.subjects.contains(subject)).toList();
   }
 
   void saveAssistant(Assistant assistant) {
-    savedAssistants.add(assistant);
+    bookmarkedAssistants.add(assistant);
   }
 
   Assistant getAssistant(int id) => assistants.firstWhere((a) => a.id == id);

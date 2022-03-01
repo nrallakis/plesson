@@ -32,6 +32,8 @@ class SubjectsRepository {
     'NUA': ['UI/UX', 'Programming', 'Economics', 'Quantum Physics'],
   };
 
+  List<String> get keywords => _keywords.keys.toList();
+
   /// Returns null if no project is found with given keyword
   List<String> getSubjectByKeyword(String keyword) {
     if (_keywords.containsKey(keyword.toUpperCase())) {

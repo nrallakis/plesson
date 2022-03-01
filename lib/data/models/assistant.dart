@@ -10,7 +10,7 @@ class Assistant {
   String description;
   List<String> subjects;
   /// Bookmarked assistants by id
-  List<int> bookmarkedAssistants;
+  List<Assistant> bookmarkedAssistants;
   int rating;
 
   Assistant({

@@ -12,31 +12,35 @@ class BookmarkedAssistantsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     BookmarkedAssistantsViewModel viewModel = context.watch<BookmarkedAssistantsViewModel>();
 
-    final itemCount = viewModel.assistants.length;
+    final itemCount = viewModel.bookmarkedAssistants.length;
+
+    if (itemCount == 0) {
+      return const Center(child: Text('No bookmarked assistants :)'));
+    }
+
     return Scaffold(
       appBar: AppBar(title: const Text('Bookmarked Assistants')),
-      body: itemCount > 0
-          ? ListView.builder(
-              itemCount: itemCount,
-              itemBuilder: (BuildContext context, int index) {
-                final assistant = viewModel.assistants[index];
-                return AssistantCard(
-                  assistant: assistant,
-                  onMessageTapped: () {
-                    /* Open message page with assistant */
-                    Navigator.pushNamed(context, routes.chat, arguments: assistant);
-                  },
-                  onMoreInfoTapped: () {
-                    /* Open assistant details page */
-                    Navigator.pushNamed(context, routes.assistant, arguments: assistant);
-                  },
-                  onBookmarkTapped: () {
-                    viewModel.remove(assistant);
-                  },
-                );
-              },
-            )
-          : const Center(child: Text('No bookmarked assistants :)')),
+      body: ListView.builder(
+        itemCount: itemCount,
+        itemBuilder: (BuildContext context, int index) {
+          final assistant = viewModel.bookmarkedAssistants[index];
+          return AssistantCard(
+            assistant: assistant,
+            isBookmarked: true,
+            onMessageTapped: () {
+              /* Open message page with assistant */
+              Navigator.pushNamed(context, routes.chat, arguments: assistant);
+            },
+            onMoreInfoTapped: () {
+              /* Open assistant details page */
+              Navigator.pushNamed(context, routes.assistant, arguments: assistant);
+            },
+            onBookmarkTapped: () {
+              viewModel.remove(assistant);
+            },
+          );
+        },
+      ),
     );
   }
 }

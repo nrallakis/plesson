@@ -7,7 +7,7 @@ import 'package:plesson/data/repositories/chat_repository.dart';
 extension AssistantRepoX on AssistantRepository {
   void seed() {
     assistants = _assistants;
-    savedAssistants = _savedAssistants;
+    currentUser.bookmarkedAssistants = _savedAssistants;
   }
 }
 
@@ -20,11 +20,6 @@ extension ChatRepoX on ChatRepository {
 final _savedAssistants =  [
   _assistants[0],
   _assistants[1],
-  _assistants[2],
-  _assistants[1],
-  _assistants[2],
-  _assistants[1],
-  _assistants[2],
 ];
 
 final _assistants = [
