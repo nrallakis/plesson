@@ -63,7 +63,7 @@ class AssistantProfileScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              "Give you rating",
+              "Give your rating",
               style: TextStyle(
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
