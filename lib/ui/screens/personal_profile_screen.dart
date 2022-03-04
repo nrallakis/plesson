@@ -8,17 +8,15 @@ import 'package:plesson/ui/components/info_card.dart';
 import 'package:plesson/routes.dart' as routes;
 import 'package:plesson/ui/components/label_swipe.dart';
 
-import '../components/nav_bar.dart';
-
-class AssistantProfileScreen extends StatelessWidget {
+class UserProfileScreen extends StatelessWidget {
   final Assistant assistant;
 
-  const AssistantProfileScreen({required this.assistant, Key? key}) : super(key: key);
+  const UserProfileScreen({required this.assistant, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NavBar('Assistant Profile', ),
+      appBar: AppBar(title: const Text('Personal Profile')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -34,17 +32,11 @@ class AssistantProfileScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  FloatingActionButton.extended(
-                    onPressed: () => Navigator.pushNamed(context, routes.chat, arguments: assistant),
-                    icon: const Icon(Icons.message),
-                    label: const Text('Message'),
-                    backgroundColor: Theme.of(context).primaryColorDark,
-                  ),
                   const SizedBox(width: 8),
                   FloatingActionButton.extended(
                     onPressed: () => _showRatingDialog(context),
-                    icon: const Icon(Icons.star),
-                    label: const Text('Rate'),
+                    icon: const Icon(Icons.edit),
+                    label: const Text('Edit Profile'),
                     backgroundColor: Theme.of(context).primaryColorDark,
                   ),
                 ],
@@ -53,50 +45,6 @@ class AssistantProfileScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  void _showRatingDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              "Give your rating",
-              style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
-                  decoration: TextDecoration.none,
-                  fontSize: 22),
-            ),
-            const SizedBox(height: 16),
-            Container(
-              padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(100),
-                ),
-              ),
-              child: RatingBar(
-                direction: Axis.horizontal,
-                allowHalfRating: true,
-                itemSize: 20,
-                ratingWidget: RatingWidget(
-                  full: const Icon(Icons.star, color: Colors.white),
-                  half: const Icon(Icons.star_half, color: Colors.white),
-                  empty: const Icon(Icons.star, color: Colors.white60),
-                ),
-                itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                onRatingUpdate: (rating) {},
-              ),
-            ),
-          ],
-        );
-      },
     );
   }
 }

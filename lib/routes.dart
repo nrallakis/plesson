@@ -9,6 +9,7 @@ import 'package:plesson/ui/screens/login_screen.dart';
 const String loginScreen = '/';
 const String savedAssistants = '/saved';
 const String assistant = '/assistant';
+const String userprofile = '/userprofile';
 const String home = '/home';
 const String chat = '/chat';
 
@@ -21,6 +22,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/assistant':
       var assistant = settings.arguments as Assistant;
       return MaterialPageRoute(builder: (_) => AssistantProfileScreen(assistant: assistant));
+    case '/assistant':
+      var assistant = settings.arguments as Assistant;
+      return MaterialPageRoute(builder: (_) => UserProfileScreen(assistant: assistant));
     case '/chat':
       var assistant = settings.arguments as Assistant;
       return MaterialPageRoute(builder: (_) => ChatScreen(assistant: assistant));
