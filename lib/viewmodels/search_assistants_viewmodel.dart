@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plesson/data/models/assistant.dart';
 import 'package:plesson/data/repositories/assistants_repository.dart';
+import 'package:plesson/data/repositories/assistants_repository.dart';
 import 'package:plesson/data/repositories/subjects_repository.dart';
 
 class SearchAssistantsViewModel extends ChangeNotifier {
@@ -12,8 +13,6 @@ class SearchAssistantsViewModel extends ChangeNotifier {
   late List<Assistant> _filteredAssistants;
 
   List<Assistant> get filteredAssistants => _filteredAssistants;
-
-  Assistant get currentUser => _assistantsRepo.currentUser;
 
   late List<String> suggestions;
   late TextEditingController _searchController;

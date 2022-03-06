@@ -25,7 +25,7 @@ class ChatViewModel extends ChangeNotifier {
     _assistantRepo = assistantRepo;
     _chatRepo = chatRepo;
     _chatSessions = chatRepo.chatSessions;
-    user = assistantRepo.currentUser.toChatUser();
+    user = currentUser.toChatUser();
   }
 
   void setChatWith(Assistant assistant) {

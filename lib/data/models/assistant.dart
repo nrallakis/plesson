@@ -9,8 +9,10 @@ class Assistant {
   String linkedIn;
   String description;
   List<String> subjects;
-  /// Bookmarked assistants by id
-  List<Assistant> bookmarkedAssistants;
+  String? imageUrl;
+  String? imagePath;
+  /// IDs of bookmarked assistants
+  List<int> bookmarkedAssistants;
   int rating;
 
   Assistant({
@@ -29,7 +31,21 @@ class Assistant {
     this.imagePath,
   });
 
-  String? imagePath;
+  Assistant.fromJson(Map<String, dynamic> json)
+    : id = json['id'],
+      username = json['username'],
+      firstName = json['firstName'],
+      lastName = json['lastName'],
+      title = json['title'],
+      description = json['description'],
+      subjects = json['subjects'].toString().split(','),
+      bookmarkedAssistants = json['bookmarkedAssistants'].toString().split(',').map((String id) => )
+
+
+  Map<String, dynamic> toJson() => {
+    'id' : id,
+    ''
+  };
 
   String get fullName => "$firstName $lastName";
 
