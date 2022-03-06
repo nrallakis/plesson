@@ -36,18 +36,18 @@ class AssistantRepository {
     bookmarkedAssistants.add(assistant);
   }
 
-  Future<Assistant> loadAssistantFromStorage() async {
-    final prefs = await SharedPreferences.getInstance();
-    String? userJson = await prefs.getString(currentUserKey);
-    if (userJson == null) throw Exception('Problem with loading user');
-    Assistant user = Assistant.fromJson(jsonDecode(userJson!));
-    return currentUser;
-  }
+  // Future<Assistant> loadAssistantFromStorage() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   String? userJson = await prefs.getString(currentUserKey);
+  //   if (userJson == null) throw Exception('Problem with loading user');
+  //   Assistant user = Assistant.fromJson(jsonDecode(userJson!));
+  //   return currentUser;
+  // }
 
-  Future<void> saveUserToLocalStorage() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(currentUserKey, jsonEncode(currentUser.toJson()));
-  }
+  // Future<void> saveUserToLocalStorage() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   await prefs.setString(currentUserKey, jsonEncode(currentUser.toJson()));
+  // }
 
   Assistant getAssistant(int id) => assistants.firstWhere((a) => a.id == id);
 }

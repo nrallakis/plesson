@@ -31,21 +31,21 @@ class Assistant {
     this.imagePath,
   });
 
-  Assistant.fromJson(Map<String, dynamic> json)
-    : id = json['id'],
-      username = json['username'],
-      firstName = json['firstName'],
-      lastName = json['lastName'],
-      title = json['title'],
-      description = json['description'],
-      subjects = json['subjects'].toString().split(','),
-      bookmarkedAssistants = json['bookmarkedAssistants'].toString().split(',').map((String id) => )
+  // Assistant.fromJson(Map<String, dynamic> json)
+  //   : id = json['id'],
+  //     username = json['username'],
+  //     firstName = json['firstName'],
+  //     lastName = json['lastName'],
+  //     title = json['title'],
+  //     description = json['description'],
+  //     subjects = json['subjects'].toString().split(','),
+  //     bookmarkedAssistants = json['bookmarkedAssistants'].toString().split(',').map((String id) => )
 
 
-  Map<String, dynamic> toJson() => {
-    'id' : id,
-    ''
-  };
+  // Map<String, dynamic> toJson() => {
+  //   'id' : id,
+  //   ''
+  // };
 
   String get fullName => "$firstName $lastName";
 

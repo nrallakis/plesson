@@ -7,6 +7,6 @@ class CurrentUserViewModel extends ChangeNotifier {
   late Assistant user;
 
   CurrentUserViewModel(AssistantRepository repo) {
-    user = repo.currentUser;
+    // user = repo.currentUser;
   }
 }
