@@ -7,10 +7,11 @@ import 'package:plesson/viewmodels/chat_viewmodel.dart';
 import 'package:plesson/viewmodels/bookmarked_assistants_viewmodel.dart';
 import 'package:plesson/viewmodels/search_assistants_viewmodel.dart';
 import 'package:provider/provider.dart';
+import 'data/models/assistant.dart';
 import 'data/repositories/chat_repository.dart';
 import 'routes.dart' as routes;
 
-void main() {
+void main() async {
   runApp(const NavigationPage());
 }
 
@@ -23,28 +24,38 @@ class NavigationPage extends StatefulWidget {
 
 class _NavigationPageState extends State<NavigationPage> {
 
+  AssistantRepository assistantRepository = AssistantRepository()..seed();
+  ChatRepository chatRepository = ChatRepository()..seed();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    AssistantRepository assistantRepository = AssistantRepository()..seed();
-    ChatRepository chatRepository = ChatRepository()..seed();
-    SubjectsRepository subjectsRepository = SubjectsRepository();
-
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => assistantRepository.user),
         ChangeNotifierProvider(create: (_) => BookmarkedAssistantsViewModel(assistantRepository)),
         ChangeNotifierProvider(create: (_) => SearchAssistantsViewModel(assistantRepository, subjectsRepository)),
         ChangeNotifierProvider(create: (_) => ChatViewModel(assistantRepository, chatRepository)),
       ],
-      child: MaterialApp(
-        title: 'Plesson',
-        theme: ThemeData(
-          primarySwatch: Colors.teal,
-          textTheme: GoogleFonts.robotoTextTheme(),
-        ),
-        onGenerateRoute: routes.generateRoute,
-        initialRoute: routes.loginScreen,
-      ),
+      child: FutureBuilder<void>(
+        future: assistantRepository.loadUserFromStorage(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const Text('Loading...');
+          } else {
+            return MaterialApp(
+              title: 'Plesson',
+              theme: ThemeData(
+                primarySwatch: Colors.teal,
+                textTheme: GoogleFonts.robotoTextTheme(),
+              ),
+              onGenerateRoute: routes.generateRoute,
+              initialRoute: routes.loginScreen,
+            );
+          }
+        }
+      )
     );
   }
 }
+
+  SubjectsRepository subjectsRepository = SubjectsRepository();

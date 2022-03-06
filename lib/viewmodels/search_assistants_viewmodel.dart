@@ -38,16 +38,22 @@ class SearchAssistantsViewModel extends ChangeNotifier {
   }
 
   bool userHasBookmarked(Assistant assistant) {
-    return currentUser.bookmarkedAssistants.contains(assistant);
+    return _assistantsRepo.user.bookmarkedAssistants.contains(assistant.id);
   }
 
   void onBookmarkTapped(Assistant assistant) {
     // Bookmark if not bookmarked or remove bookmark
-    if (currentUser.bookmarkedAssistants.contains(assistant)) {
+    if (userHasBookmarked(assistant)) {
       _assistantsRepo.bookmarkedAssistants.remove(assistant);
     } else {
       _assistantsRepo.bookmarkedAssistants.add(assistant);
     }
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _searchController.dispose();
   }
 }

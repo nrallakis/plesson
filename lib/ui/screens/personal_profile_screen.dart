@@ -4,14 +4,15 @@ import 'package:plesson/ui/components/assistant_personal_info.dart';
 import 'package:plesson/ui/components/assistant_preview.dart';
 import 'package:plesson/ui/components/subject_chips.dart';
 import 'package:plesson/routes.dart' as routes;
+import 'package:provider/provider.dart';
 
 class UserProfileScreen extends StatelessWidget {
-  final Assistant user;
-
-  const UserProfileScreen({required this.user, Key? key}) : super(key: key);
+  const UserProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Assistant user = context.watch<Assistant>();
+
     return Scaffold(
       appBar: AppBar(title: const Text('Personal Profile')),
       body: Padding(

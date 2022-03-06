@@ -10,42 +10,48 @@ class EditProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const NavBar(pageName: 'Assistant Profile'),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          children: [
-            _ListEditTile(
-              title: 'Title',
-              description: 'Change your displayed title',
-              valueChanged: (String title) {
-                user.title = title;
-              },
-            ),
-            _ListEditTile(
-              title: 'Description',
-              description: 'Change your displayed description card',
-              valueChanged: (String description) {
-                user.description = description;
-              },
-            ),
-            _ListEditTile(
-              title: 'Contact',
-              description: 'Change your displayed contact card',
-              valueChanged: (String value) {},
-            ),
-            _ListEditTile(
-              title: 'Education',
-              description: 'Change your displayed education card',
-              valueChanged: (String value) {},
-            ),
-            _ListEditTile(
-              title: 'Subjects',
-              description: 'See and edit your subjects',
-              valueChanged: (String value) {},
-            ),
-          ],
+    return WillPopScope(
+      onWillPop: () {
+        Navigator.pop(context, user);
+        return Future.value(true);
+      },
+      child: Scaffold(
+        appBar: const NavBar(pageName: 'Assistant Profile'),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
+            children: [
+              _ListEditTile(
+                title: 'Title',
+                description: 'Change your displayed title',
+                valueChanged: (String title) {
+                  user.title = title;
+                },
+              ),
+              _ListEditTile(
+                title: 'Description',
+                description: 'Change your displayed description card',
+                valueChanged: (String description) {
+                  user.description = description;
+                },
+              ),
+              _ListEditTile(
+                title: 'Contact',
+                description: 'Change your displayed contact card',
+                valueChanged: (String value) {},
+              ),
+              _ListEditTile(
+                title: 'Education',
+                description: 'Change your displayed education card',
+                valueChanged: (String value) {},
+              ),
+              _ListEditTile(
+                title: 'Subjects',
+                description: 'See and edit your subjects',
+                valueChanged: (String value) {},
+              ),
+            ],
+          ),
         ),
       ),
     );
