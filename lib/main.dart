@@ -11,7 +11,7 @@ import 'data/models/assistant.dart';
 import 'data/repositories/chat_repository.dart';
 import 'routes.dart' as routes;
 
-void main() async {
+void main() {
   runApp(const NavigationPage());
 }
 
@@ -24,6 +24,7 @@ class NavigationPage extends StatefulWidget {
 
 class _NavigationPageState extends State<NavigationPage> {
 
+  SubjectsRepository subjectsRepository = SubjectsRepository();
   AssistantRepository assistantRepository = AssistantRepository()..seed();
   ChatRepository chatRepository = ChatRepository()..seed();
   // This widget is the root of your application.
@@ -49,7 +50,7 @@ class _NavigationPageState extends State<NavigationPage> {
                 textTheme: GoogleFonts.robotoTextTheme(),
               ),
               onGenerateRoute: routes.generateRoute,
-              initialRoute: routes.loginScreen,
+              initialRoute: routes.openingScreen,
             );
           }
         }
@@ -58,4 +59,4 @@ class _NavigationPageState extends State<NavigationPage> {
   }
 }
 
-  SubjectsRepository subjectsRepository = SubjectsRepository();
+
