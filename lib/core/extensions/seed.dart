@@ -18,8 +18,8 @@ extension ChatRepoX on ChatRepository {
 }
 
 final _savedAssistants =  [
-  _assistants[0],
-  _assistants[1],
+  _assistants[0].id,
+  _assistants[1].id,
 ];
 
 final _assistants = [
