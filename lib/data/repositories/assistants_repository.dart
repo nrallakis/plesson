@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:convert';
 
 import 'package:plesson/core/extensions/seed.dart';
@@ -9,9 +10,9 @@ const currentUserKey = "current_user_json";
 class AssistantRepository {
 
   List<Assistant> assistants = [];
-  List<Assistant> get bookmarkedAssistants {
-    return user.bookmarkedAssistants
-        .map((int id) => getAssistant(id)).toList();
+  UnmodifiableListView<Assistant> get bookmarkedAssistants {
+    return UnmodifiableListView(user.bookmarkedAssistants
+        .map((int id) => getAssistant(id)).toList());
   }
 
   List<Assistant> getAssistantsBySubject(String subject) {
@@ -20,10 +21,14 @@ class AssistantRepository {
 
   Assistant? _user;
 
-  void saveAssistant(Assistant assistant) {
-    bookmarkedAssistants.add(assistant);
+  void bookmarkAssistant(Assistant assistant) {
+    _user?.bookmarkedAssistants.add(assistant.id);
   }
 
+  void removeAssistant(Assistant assistant) {
+    _user?.bookmarkedAssistants.remove(assistant.id);
+  }
+  
   Assistant get user => _user!;
 
   Future loadUserFromStorage() async {

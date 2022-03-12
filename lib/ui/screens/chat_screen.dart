@@ -5,6 +5,8 @@ import 'package:plesson/data/repositories/chat_repository.dart';
 import 'package:plesson/viewmodels/chat_viewmodel.dart';
 import 'package:provider/provider.dart';
 
+import '../components/nav_bar.dart';
+
 class ChatScreen extends StatelessWidget {
   const ChatScreen({Key? key, required this.assistant}) : super(key: key);
 
@@ -17,7 +19,7 @@ class ChatScreen extends StatelessWidget {
     ChatSession session = viewModel.currentSession!;
 
     return Scaffold(
-      appBar: AppBar(title: Text(session.from.fullName)),
+      appBar: NavBar(pageName: assistant.fullName),
       body: SafeArea(
         bottom: false,
         child: Chat(

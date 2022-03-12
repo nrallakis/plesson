@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:searchfield/searchfield.dart';
 
 import '../../routes.dart' as routes;
+import '../components/nav_bar.dart';
 
 class SearchAssistantsScreen extends StatelessWidget {
   const SearchAssistantsScreen({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class SearchAssistantsScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Search Assistants')),
+      appBar: NavBar(pageName: 'Search'),
       body: Column(
         children: [
           Padding(

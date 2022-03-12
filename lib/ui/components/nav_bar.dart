@@ -24,7 +24,7 @@ class _NavBarState extends State<NavBar>{
     Assistant user = context.read<Assistant>();
 
     return AppBar(title: Text(widget.pageName), actions: [
-      if (widget.showAvatar)
+      if (widget.showAvatar == true)
         GestureDetector(
           onTap: () {
             Navigator.pushNamed(context, routes.userProfile);

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:plesson/core/extensions/seed.dart';
@@ -41,7 +42,7 @@ class _NavigationPageState extends State<NavigationPage> {
         future: assistantRepository.loadUserFromStorage(),
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
-            return const Text('Loading...');
+            return const Text('Loading...', textDirection: TextDirection.ltr);
           } else {
             return MaterialApp(
               title: 'Plesson',
