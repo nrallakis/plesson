@@ -21,7 +21,7 @@ class _NavBarState extends State<NavBar>{
   @override
   Widget build(BuildContext context) {
     return AppBar(title: Text(widget.pageName), actions: [
-      if (widget.showAvatar)
+      if (widget.showAvatar == true)
         GestureDetector(
           onTap: () {
             Navigator.pushNamed(context, routes.userProfile, arguments: currentUser);

@@ -19,6 +19,7 @@ const String savedAssistants = '/saved';
 const String assistant = '/assistant';
 const String userProfile = '/userprofile';
 const String userProfileEdit = '/userprofile/edit';
+const String editSubject = '/userprofile/edit/subjects';
 const String home = '/home';
 const String chat = '/chat';
 
@@ -40,6 +41,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/userprofile/edit':
       var user = settings.arguments as Assistant;
       return MaterialPageRoute(builder: (_) => EditProfileScreen(user: user));
+    case '/userprofile/edit/subjects':
+      var user = settings.arguments as Assistant;
+      return MaterialPageRoute(builder: (_) => EditProfileSubjects(user: user));
     case '/chat':
       var assistant = settings.arguments as Assistant;
       return MaterialPageRoute(builder: (_) => ChatScreen(assistant: assistant));

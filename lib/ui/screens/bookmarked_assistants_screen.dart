@@ -4,6 +4,7 @@ import 'package:plesson/viewmodels/bookmarked_assistants_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 import '../../routes.dart' as routes;
+import '../components/nav_bar.dart';
 
 class BookmarkedAssistantsScreen extends StatelessWidget {
   const BookmarkedAssistantsScreen({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class BookmarkedAssistantsScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Bookmarked Assistants')),
+      appBar: NavBar(pageName: 'Bookmarked Assisstants'),
       body: ListView.builder(
         itemCount: itemCount,
         itemBuilder: (BuildContext context, int index) {

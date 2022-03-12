@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plesson/data/models/assistant.dart';
 import 'package:plesson/ui/components/nav_bar.dart';
 import 'package:plesson/ui/components/text_input_dialog.dart';
+import 'package:plesson/routes.dart' as routes;
 
 class EditProfileScreen extends StatelessWidget {
   final Assistant user;
@@ -11,7 +12,7 @@ class EditProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const NavBar(pageName: 'Assistant Profile'),
+      appBar: const NavBar(pageName: 'Edit Profile', showAvatar: false),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
@@ -40,11 +41,21 @@ class EditProfileScreen extends StatelessWidget {
               description: 'Change your displayed education card',
               valueChanged: (String value) {},
             ),
-            _ListEditTile(
-              title: 'Subjects',
-              description: 'See and edit your subjects',
-              valueChanged: (String value) {},
-            ),
+        GestureDetector(
+          child: Column(
+            children: [
+              Text(
+                'Subjects',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'See and edit your subjects',
+                style: TextStyle(),
+              ),
+            ],
+          ),
+          onTap: () => Navigator.pushNamed(context, routes.editSubject),
+        );
           ],
         ),
       ),
@@ -88,7 +99,7 @@ class _ListEditTile extends StatelessWidget {
       context: context,
       builder: (context) {
         return TextInputDialog(
-          text: 'Change value',
+          text: 'Change $title',
           onResult: (String? value) {
             if (value != null) valueChanged(value);
           },

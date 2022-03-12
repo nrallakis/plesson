@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:plesson/core/extensions/helpers.dart';
 import 'package:plesson/data/repositories/chat_repository.dart';
 import 'package:plesson/ui/components/avatar.dart';
+import 'package:plesson/ui/components/nav_bar.dart';
 import 'package:plesson/viewmodels/chat_viewmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:plesson/routes.dart' as routes;
@@ -15,7 +16,7 @@ class ChatSessionsScreen extends StatelessWidget {
     ChatViewModel viewModel = context.watch<ChatViewModel>();
     final itemCount = viewModel.chatSessions.length;
     return Scaffold(
-      appBar: AppBar(title: const Text('Personal Messages')),
+      appBar: NavBar(pageName: 'Personal Messages'),
       body: itemCount > 0
           ? ListView.builder(
               itemCount: itemCount,

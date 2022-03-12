@@ -16,7 +16,7 @@ class AssistantProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const NavBar(pageName: 'Assistant Profile'),
+      appBar: NavBar(pageName: assistant.fullName),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
