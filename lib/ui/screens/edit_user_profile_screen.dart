@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:plesson/data/models/assistant.dart';
+import 'package:plesson/routes.dart' as routes;
 import 'package:plesson/ui/components/nav_bar.dart';
 import 'package:plesson/ui/components/text_input_dialog.dart';
-import 'package:plesson/routes.dart' as routes;
 
 class EditProfileScreen extends StatelessWidget {
   final Assistant user;
@@ -41,21 +41,21 @@ class EditProfileScreen extends StatelessWidget {
               description: 'Change your displayed education card',
               valueChanged: (String value) {},
             ),
-        GestureDetector(
-          child: Column(
-            children: [
-              Text(
-                'Subjects',
-                style: TextStyle(fontWeight: FontWeight.bold),
+            GestureDetector(
+              child: Column(
+                children: const [
+                  Text(
+                    'Subjects',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'See and edit your subjects',
+                    style: TextStyle(),
+                  ),
+                ],
               ),
-              Text(
-                'See and edit your subjects',
-                style: TextStyle(),
-              ),
-            ],
-          ),
-          onTap: () => Navigator.pushNamed(context, routes.editSubject),
-        );
+              onTap: () => Navigator.pushNamed(context, routes.editSubject, arguments: user),
+            )
           ],
         ),
       ),
@@ -82,11 +82,11 @@ class _ListEditTile extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           Text(
             description,
-            style: TextStyle(),
+            style: const TextStyle(),
           ),
         ],
       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plesson/data/models/assistant.dart';
 import 'package:plesson/data/repositories/assistants_repository.dart';
-import 'package:plesson/data/repositories/assistants_repository.dart';
 import 'package:plesson/data/repositories/subjects_repository.dart';
 
 class SearchAssistantsViewModel extends ChangeNotifier {
@@ -43,8 +42,6 @@ class SearchAssistantsViewModel extends ChangeNotifier {
 
   void onBookmarkTapped(Assistant assistant) {
     // Bookmark if not bookmarked or remove bookmark
-    if (userHasBookmarked(assistant)) {
-      _assistantsRepo.bookmarkedAssistants.remove(assistant);
     if (userHasBookmarked(assistant)) {
       _assistantsRepo.removeAssistant(assistant);
     } else {

@@ -3,6 +3,7 @@ import 'package:plesson/data/models/assistant.dart';
 import 'package:plesson/data/repositories/chat_repository.dart';
 import 'package:plesson/ui/screens/assistant_profile_screen.dart';
 import 'package:plesson/ui/screens/chat_screen.dart';
+import 'package:plesson/ui/screens/edit_subjects.dart';
 import 'package:plesson/ui/screens/edit_user_profile_screen.dart';
 import 'package:plesson/ui/screens/home_screen.dart';
 import 'package:plesson/ui/screens/login_screen.dart';
