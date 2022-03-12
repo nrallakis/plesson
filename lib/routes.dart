@@ -37,7 +37,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       var assistant = settings.arguments as Assistant;
       return MaterialPageRoute(builder: (_) => AssistantProfileScreen(assistant: assistant));
     case '/userprofile':
-      return MaterialPageRoute(builder: (_) => UserProfileScreen(user: currentUser));
+      return MaterialPageRoute(builder: (_) => UserProfileScreen());
     case '/userprofile/edit':
       var user = settings.arguments as Assistant;
       return MaterialPageRoute(builder: (_) => EditProfileScreen(user: user));

@@ -7,9 +7,23 @@ import 'package:plesson/data/repositories/chat_repository.dart';
 extension AssistantRepoX on AssistantRepository {
   void seed() {
     assistants = _assistants;
-    currentUser.bookmarkedAssistants = _savedAssistants;
   }
 }
+
+final seedUser = Assistant(
+  id: 0,
+  username: 'user',
+  firstName: 'Nicholas',
+  lastName: 'Rallakis',
+  bookmarkedAssistants: [1, 2, 3],
+  rating: 8,
+  description: 'Bsc in Maths. Can also assist in Physics and Chemistry. I also teach Algorithms, Data Structures & Programming languages.',
+  title: 'Maths',
+  subjects: ["Maths", "AI"],
+  email: 'nrallakis4@gmail.com',
+  linkedIn: 'Nicholas Rallakis',
+  facebook: 'Nicholas Rallakis',
+);
 
 extension ChatRepoX on ChatRepository {
   void seed() {

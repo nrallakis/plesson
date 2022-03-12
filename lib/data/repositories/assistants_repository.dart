@@ -28,7 +28,7 @@ class AssistantRepository {
   void removeAssistant(Assistant assistant) {
     _user?.bookmarkedAssistants.remove(assistant.id);
   }
-
+  
   Assistant get user => _user!;
 
   Future loadUserFromStorage() async {

@@ -1,0 +1,15 @@
+{
+  "id": 0,
+  "username": "user",
+  "firstName": "Nicholas",
+  "lastName": "Rallakis",
+  "title": "Maths",
+  "description": "Bsc in Maths. Can also assist in Physics and Chemistry. I also teach Algorithms, Data Structures & Programming languages.",
+  "subjects": ["Maths","AI"],
+  "bookmarkedAssistants": [1,2,3],
+  "rating": 8,
+  "email": "nrallakis4@gmail.com",
+  "facebook": "Nicholas Rallakis",
+  "linkedIn": "Nicholas Rallakis",
+  "imagePath": null
+}
