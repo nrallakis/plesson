@@ -45,8 +45,10 @@ class SearchAssistantsViewModel extends ChangeNotifier {
     // Bookmark if not bookmarked or remove bookmark
     if (currentUser.bookmarkedAssistants.contains(assistant)) {
       _assistantsRepo.bookmarkedAssistants.remove(assistant);
+    if (userHasBookmarked(assistant)) {
+      _assistantsRepo.removeAssistant(assistant);
     } else {
-      _assistantsRepo.bookmarkedAssistants.add(assistant);
+      _assistantsRepo.bookmarkAssistant(assistant);
     }
     notifyListeners();
   }

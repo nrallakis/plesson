@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:plesson/core/extensions/seed.dart';
@@ -36,15 +37,24 @@ class _NavigationPageState extends State<NavigationPage> {
         ChangeNotifierProvider(create: (_) => SearchAssistantsViewModel(assistantRepository, subjectsRepository)),
         ChangeNotifierProvider(create: (_) => ChatViewModel(assistantRepository, chatRepository)),
       ],
-      child: MaterialApp(
-        title: 'Plesson',
-        theme: ThemeData(
-          primarySwatch: Colors.teal,
-          textTheme: GoogleFonts.robotoTextTheme(),
-        ),
-        onGenerateRoute: routes.generateRoute,
-        initialRoute: routes.openingScreen,
-      ),
+      child: FutureBuilder<void>(
+        future: assistantRepository.loadUserFromStorage(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState != ConnectionState.done) {
+            return const Text('Loading...', textDirection: TextDirection.ltr);
+          } else {
+            return MaterialApp(
+              title: 'Plesson',
+              theme: ThemeData(
+                primarySwatch: Colors.teal,
+                textTheme: GoogleFonts.robotoTextTheme(),
+              ),
+              onGenerateRoute: routes.generateRoute,
+              initialRoute: routes.openingScreen,
+            );
+          }
+        }
+      )
     );
   }
 }

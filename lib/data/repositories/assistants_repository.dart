@@ -1,53 +1,52 @@
+import 'dart:collection';
 import 'dart:convert';
 
+import 'package:plesson/core/extensions/seed.dart';
 import 'package:plesson/data/models/assistant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-final currentUser = Assistant(
-  id: 0,
-  username: 'user',
-  firstName: 'Nicholas',
-  lastName: 'Rallakis',
-  bookmarkedAssistants: [],
-  rating: 8,
-  description: 'Bsc in Maths. Can also assist in Physics and Chemistry. I also teach Algorithms, Data Structures & Programming languages.',
-  title: 'Maths',
-  subjects: [],
-  email: 'nrallakis4@gmail.com',
-  linkedIn: 'Nicholas Rallakis',
-  facebook: 'Nicholas Rallakis',
-);
 
 const currentUserKey = "current_user_json";
 
 class AssistantRepository {
 
   List<Assistant> assistants = [];
-  List<Assistant> get bookmarkedAssistants {
-    return currentUser.bookmarkedAssistants
-        .map((int id) => getAssistant(id)).toList();
+  UnmodifiableListView<Assistant> get bookmarkedAssistants {
+    return UnmodifiableListView(user.bookmarkedAssistants
+        .map((int id) => getAssistant(id)).toList());
   }
 
   List<Assistant> getAssistantsBySubject(String subject) {
     return assistants.where((assistant) => assistant.subjects.contains(subject)).toList();
   }
 
-  void saveAssistant(Assistant assistant) {
-    bookmarkedAssistants.add(assistant);
+  Assistant? _user;
+
+  void bookmarkAssistant(Assistant assistant) {
+    _user?.bookmarkedAssistants.add(assistant.id);
   }
 
-  // Future<Assistant> loadAssistantFromStorage() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   String? userJson = await prefs.getString(currentUserKey);
-  //   if (userJson == null) throw Exception('Problem with loading user');
-  //   Assistant user = Assistant.fromJson(jsonDecode(userJson!));
-  //   return currentUser;
-  // }
+  void removeAssistant(Assistant assistant) {
+    _user?.bookmarkedAssistants.remove(assistant.id);
+  }
 
-  // Future<void> saveUserToLocalStorage() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   await prefs.setString(currentUserKey, jsonEncode(currentUser.toJson()));
-  // }
+  Assistant get user => _user!;
+
+  Future loadUserFromStorage() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? userJson = prefs.getString(currentUserKey);
+
+    if (userJson == null) {
+      _user = seedUser;
+      saveUserToLocalStorage();
+    } else {
+      _user = Assistant.fromJson(jsonDecode(userJson));
+    }
+  }
+
+  Future<void> saveUserToLocalStorage() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(currentUserKey, jsonEncode(user.toJson()));
+  }
 
   Assistant getAssistant(int id) => assistants.firstWhere((a) => a.id == id);
 }
