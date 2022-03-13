@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:plesson/ui/components/assistant_card.dart';
 import 'package:plesson/viewmodels/search_assistants_viewmodel.dart';
 import 'package:provider/provider.dart';
-import 'package:searchfield/searchfield.dart';
 
 import '../../routes.dart' as routes;
 import '../components/nav_bar.dart';
+
 
 class SearchAssistantsScreen extends StatelessWidget {
   const SearchAssistantsScreen({Key? key}) : super(key: key);
@@ -21,29 +22,39 @@ class SearchAssistantsScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: NavBar(pageName: 'Search'),
-      body: Column(
+      appBar: const NavBar(pageName: 'Search'),
+      body: ListView(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: SearchField(
-              controller: viewModel.searchController,
-              suggestions: viewModel.suggestions.map((s) => SearchFieldListItem(s)).toList(),
-              hint: 'Search for subjects or universities',
-              searchInputDecoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Theme.of(context).primaryColor),
-                ),
+            child: TypeAheadField(
+              textFieldConfiguration: TextFieldConfiguration(
+                  controller: viewModel.searchController,
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                    ),
+                  )),
+              suggestionsCallback: (pattern) {
+                return viewModel.suggestions.where((e) => e.toLowerCase().startsWith(pattern.toLowerCase()));
+              },
+              itemBuilder: (context, suggestion) => ListTile(
+                title: Text(suggestion.toString()),
               ),
+              onSuggestionSelected: (String suggestion) => viewModel.onSearchChanged(),
             ),
           ),
+          _buildCategories(context),
           Expanded(
             child: ListView.builder(
+              shrinkWrap: true,
+              physics: const ScrollPhysics(),
               itemCount: itemCount,
               itemBuilder: (BuildContext context, int index) {
                 return AssistantCard(
@@ -55,7 +66,8 @@ class SearchAssistantsScreen extends StatelessWidget {
                   },
                   onMoreInfoTapped: () {
                     /* Open assistant details page */
-                    Navigator.pushNamed(context, routes.assistant, arguments: viewModel.filteredAssistants[index]);
+                    Navigator.pushNamed(context, routes.assistant,
+                        arguments: viewModel.filteredAssistants[index]);
                   },
                   onBookmarkTapped: () {
                     viewModel.onBookmarkTapped(viewModel.filteredAssistants[index]);
@@ -65,6 +77,101 @@ class SearchAssistantsScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+void _onSelectCategory(Category category) {
+  // do nothing for now
+}
+
+final categories = [
+  Category(name: 'Maths', color: Colors.teal),
+  Category(name: 'Physics', color: Colors.red),
+  Category(name: 'UI/UX', color: Colors.blue),
+  Category(name: 'Flutter', color: Colors.yellow),
+  Category(name: 'Operating Systems', color: Colors.purple),
+  Category(name: 'Algorithms', color: Colors.brown),
+];
+
+Widget _buildCategories(BuildContext context) {
+  return GridView.builder(
+    shrinkWrap: true,
+    physics: const NeverScrollableScrollPhysics(),
+    padding: const EdgeInsets.fromLTRB(28, 22, 28, 42),
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      crossAxisSpacing: 10,
+      childAspectRatio: 4.6,
+      mainAxisSpacing: 15,
+    ),
+    itemCount: categories.length,
+    itemBuilder: (context, index) {
+      return CategoryCard(
+        category: categories[index],
+        onPress: () => _onSelectCategory(categories[index]),
+      );
+    },
+  );
+}
+
+class Category {
+  final String name;
+  final Color color;
+
+  Category({required this.name, required this.color});
+}
+
+class CategoryCard extends StatelessWidget {
+  final Category category;
+  final void Function()? onPress;
+
+  const CategoryCard({
+    Key? key,
+    required this.category,
+    this.onPress,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constrains) {
+        final itemHeight = constrains.maxHeight;
+        final itemWidth = constrains.maxWidth;
+
+        return Material(
+          color: category.color,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            splashColor: Colors.white10,
+            highlightColor: Colors.white10,
+            onTap: onPress,
+            child: _CardContent(category.name),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _CardContent extends StatelessWidget {
+  const _CardContent(this.name);
+
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.centerLeft,
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Text(
+        name,
+        style: const TextStyle(
+          fontSize: 14,
+          color: Colors.white,
+        ),
       ),
     );
   }

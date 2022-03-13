@@ -53,6 +53,6 @@ class SearchAssistantsViewModel extends ChangeNotifier {
   @override
   void dispose() {
     super.dispose();
-    _searchController.dispose();
+    // _searchController.dispose();
   }
 }
