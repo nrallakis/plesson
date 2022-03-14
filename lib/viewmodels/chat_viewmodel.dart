@@ -19,11 +19,9 @@ class ChatViewModel extends ChangeNotifier {
 
   late User user;
   late AssistantRepository _assistantRepo;
-  late ChatRepository _chatRepo;
 
   ChatViewModel(AssistantRepository assistantRepo, ChatRepository chatRepo) {
     _assistantRepo = assistantRepo;
-    _chatRepo = chatRepo;
     _chatSessions = chatRepo.chatSessions;
     user = _assistantRepo.user.toChatUser();
   }

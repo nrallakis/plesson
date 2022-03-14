@@ -20,7 +20,7 @@ class BookmarkedAssistantsScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: NavBar(pageName: 'Bookmarked Assisstants'),
+      appBar: const NavBar(pageName: 'Bookmarked Assisstants'),
       body: ListView.builder(
         itemCount: itemCount,
         itemBuilder: (BuildContext context, int index) {

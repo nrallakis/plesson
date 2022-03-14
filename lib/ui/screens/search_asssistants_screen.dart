@@ -137,9 +137,6 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constrains) {
-        final itemHeight = constrains.maxHeight;
-        final itemWidth = constrains.maxWidth;
-
         return Material(
           color: category.color,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

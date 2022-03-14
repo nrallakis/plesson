@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plesson/ui/screens/bookmarked_assistants_screen.dart';
 import 'package:plesson/ui/screens/search_asssistants_screen.dart';
-import 'package:provider/provider.dart';
 
-import 'chat_screen.dart';
 import 'chat_sessions_screen.dart';
 
 class HomeScreen extends StatefulWidget {

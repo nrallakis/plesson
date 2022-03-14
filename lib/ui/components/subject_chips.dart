@@ -5,12 +5,13 @@ import 'package:provider/provider.dart';
 import '../../data/models/assistant.dart';
 
 class Subjects extends StatelessWidget {
-  final bool removeButton;
+  final bool removable;
 
-  const Subjects({Key? key, required this.subjects,
-    this.removeButton = false,
-  })
-      : super(key: key);
+  const Subjects({
+    Key? key,
+    required this.subjects,
+    this.removable = false,
+  }) : super(key: key);
 
   final List<String> subjects;
 
@@ -21,8 +22,7 @@ class Subjects extends StatelessWidget {
       children: [
         const Text(
           'Subjects',
-          style: TextStyle(
-              color: Colors.black87, fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.black87, fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 16),
         Wrap(
@@ -35,24 +35,50 @@ class Subjects extends StatelessWidget {
     );
   }
 
-  List<Widget> subjectChips(
-      BuildContext context, List<String> subjects) {
+  List<Widget> subjectChips(BuildContext context, List<String> subjects) {
     if (subjects.isEmpty) return const [Text('No subjects')];
     return subjects
-        .map((subject) => Chip(
-              label: Text(
-                subject,
-                style: GoogleFonts.robotoCondensed(color: Colors.white),
-              ),
-              backgroundColor: Theme.of(context).primaryColor,
-              // isBookmarked ? Icons.bookmark : Icons.bookmark_border
-              deleteIcon: (removeButton) ? Icon(Icons.cancel) : null,
-              deleteIconColor: (removeButton) ? Colors.white60 : null,
-              onDeleted: (removeButton) ? () {
-                Assistant user = context.read<Assistant>();
-                user.removeSubject(subject);
-              } : null,
-            ))
+        .map((subject) => removable ? RemovableChip(subject: subject) : NormalChip(subject: subject))
         .toList();
+  }
+}
+
+class NormalChip extends StatelessWidget {
+  const NormalChip({Key? key, required this.subject}) : super(key: key);
+
+  final String subject;
+
+  @override
+  Widget build(BuildContext context) {
+    return Chip(
+      label: Text(
+        subject,
+        style: GoogleFonts.robotoCondensed(color: Colors.white),
+      ),
+      backgroundColor: Theme.of(context).primaryColor,
+    );
+  }
+}
+
+class RemovableChip extends StatelessWidget {
+  const RemovableChip({Key? key, required this.subject}) : super(key: key);
+
+  final String subject;
+
+  @override
+  Widget build(BuildContext context) {
+    Assistant user = context.watch<Assistant>();
+
+    return Chip(
+        label: Text(
+          subject,
+          style: GoogleFonts.robotoCondensed(color: Colors.white),
+        ),
+        backgroundColor: Theme.of(context).primaryColor,
+        deleteIcon: const Icon(Icons.cancel),
+        deleteIconColor: Colors.white60,
+        onDeleted: () {
+          user.removeSubject(subject);
+        });
   }
 }

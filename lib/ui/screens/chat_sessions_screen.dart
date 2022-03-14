@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:plesson/core/extensions/helpers.dart';
 import 'package:plesson/data/repositories/chat_repository.dart';
 import 'package:plesson/ui/components/avatar.dart';
 import 'package:plesson/ui/components/nav_bar.dart';
@@ -16,7 +14,7 @@ class ChatSessionsScreen extends StatelessWidget {
     ChatViewModel viewModel = context.watch<ChatViewModel>();
     final itemCount = viewModel.chatSessions.length;
     return Scaffold(
-      appBar: NavBar(pageName: 'Personal Messages'),
+      appBar: const NavBar(pageName: 'Personal Messages'),
       body: itemCount > 0
           ? ListView.builder(
               itemCount: itemCount,

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:plesson/core/extensions/seed.dart';
@@ -8,7 +7,6 @@ import 'package:plesson/viewmodels/chat_viewmodel.dart';
 import 'package:plesson/viewmodels/bookmarked_assistants_viewmodel.dart';
 import 'package:plesson/viewmodels/search_assistants_viewmodel.dart';
 import 'package:provider/provider.dart';
-import 'data/models/assistant.dart';
 import 'data/repositories/chat_repository.dart';
 import 'routes.dart' as routes;
 
