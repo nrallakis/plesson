@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:plesson/data/models/assistant.dart';
-import 'package:plesson/ui/screens/assistant_profile_screen.dart';
-import 'package:plesson/ui/screens/chat_screen.dart';
-import 'package:plesson/ui/screens/edit_user_profile_screen.dart';
-import 'package:plesson/ui/screens/home_screen.dart';
-import 'package:plesson/ui/screens/login_screen.dart';
-import 'package:plesson/ui/screens/opening_screen.dart';
-import 'package:plesson/ui/screens/personal_profile_screen.dart';
-import 'package:plesson/ui/screens/register_screen.dart';
+import 'data/models/assistant.dart';
+import 'ui/screens/assistant_profile_screen.dart';
+import 'ui/screens/chat/chat_screen.dart';
+import 'ui/screens/edit_user_profile_screen.dart';
+import 'ui/screens/home_screen.dart';
+import 'ui/screens/login/login_screen.dart';
+import 'ui/screens/login/opening_screen.dart';
+import 'ui/screens/login/register_screen.dart';
+import 'ui/screens/personal_profile_screen.dart';
 
 const String openingScreen = '/';
 const String loginScreen = '/login';

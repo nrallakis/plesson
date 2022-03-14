@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart';
-import 'package:plesson/core/extensions/chat.dart';
-import 'package:plesson/core/utils.dart';
-import 'package:plesson/data/models/assistant.dart';
-import 'package:plesson/data/repositories/assistants_repository.dart';
-import 'package:plesson/data/repositories/chat_repository.dart';
+import '../core/extensions/chat.dart';
+import '../core/utils.dart';
+import '../data/models/assistant.dart';
+import '../data/repositories/assistants_repository.dart';
+import '../data/repositories/chat_repository.dart';
 
 class ChatViewModel extends ChangeNotifier {
   //Used on chatSessionsScreen

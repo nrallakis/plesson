@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
-import 'package:plesson/ui/components/avatar.dart';
+import 'avatar.dart';
 
 import '../../data/models/assistant.dart';
 

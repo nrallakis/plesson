@@ -1,98 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../routes.dart';
+import '../../../routes.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   late bool _obscurePassword;
-
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
 
   @override
   void initState() {
     super.initState();
     _obscurePassword = true;
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
+        title: const Text('Log-in'),
       ),
       body: SafeArea(
         minimum: const EdgeInsets.all(16),
-        child: _buildRegisterForm(),
+        child: _buildLoginForm(),
       ),
     );
   }
 
-  Widget _buildRegisterForm() {
+  Widget _buildLoginForm() {
     return Form(
       key: _key,
       child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'First Name',
-                filled: true,
-                isDense: true,
-              ),
-              keyboardType: TextInputType.name,
-              autocorrect: false,
-              validator: (val) => _validateRequired(val, 'First Name'),
-            ),
-            const SizedBox(
-              height: 17,
-            ),
-            TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Last Name',
-              filled: true,
-              isDense: true,
-            ),
-            keyboardType: TextInputType.name,
-            autocorrect: false,
-              validator: (val) => _validateRequired(val, 'Last Name'),
-          ),
-            const SizedBox(
-              height: 17,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Username',
-                filled: true,
-                isDense: true,
-              ),
-              keyboardType: TextInputType.name,
-              autocorrect: false,
-              validator: (val) => _validateRequired(val, 'Username'),
-            ),
-            const SizedBox(
-              height: 17,
-            ),
             TextFormField(
               decoration: const InputDecoration(
                 labelText: 'Email',
                 filled: true,
                 isDense: true,
               ),
+              controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               autocorrect: false,
               validator: _validateEmail,
             ),
             const SizedBox(
-              height: 17,
+              height: 12,
             ),
             TextFormField(
               decoration: const InputDecoration(
@@ -101,10 +65,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 isDense: true,
               ),
               obscureText: _obscurePassword,
+              controller: _passwordController,
               validator: (val) => _validateRequired(val, 'Password'),
             ),
             const SizedBox(
-              height: 22,
+              height: 17,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -119,16 +84,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     style: GoogleFonts.roboto(),
                   ),
                   style:
-                  ElevatedButton.styleFrom(fixedSize: const Size(100, 35)),
+                      ElevatedButton.styleFrom(fixedSize: const Size(100, 35)),
                 ),
                 ElevatedButton(
-                  onPressed: _validateFormAndRegister,
+                  onPressed: _validateFormAndLogin,
                   child: Text(
-                    "Register",
+                    "Log-in",
                     style: GoogleFonts.roboto(),
                   ),
                   style:
-                  ElevatedButton.styleFrom(fixedSize: const Size(100, 35)),
+                      ElevatedButton.styleFrom(fixedSize: const Size(100, 35)),
                 ),
               ],
             ),
@@ -159,7 +124,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return null;
   }
 
-  void _validateFormAndRegister() {
+  void _validateFormAndLogin() {
     // Get form state from the global key
     var formState = _key.currentState;
 
@@ -170,4 +135,3 @@ class _RegisterScreenState extends State<RegisterScreen> {
     }
   }
 }
-

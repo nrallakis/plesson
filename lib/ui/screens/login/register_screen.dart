@@ -1,62 +1,98 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../routes.dart';
+import '../../../routes.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   late bool _obscurePassword;
-  late TextEditingController _emailController;
-  late TextEditingController _passwordController;
+
 
   @override
   void initState() {
     super.initState();
     _obscurePassword = true;
-    _emailController = TextEditingController();
-    _passwordController = TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Log-in'),
+        title: const Text('Register'),
       ),
       body: SafeArea(
         minimum: const EdgeInsets.all(16),
-        child: _buildLoginForm(),
+        child: _buildRegisterForm(),
       ),
     );
   }
 
-  Widget _buildLoginForm() {
+  Widget _buildRegisterForm() {
     return Form(
       key: _key,
       child: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'First Name',
+                filled: true,
+                isDense: true,
+              ),
+              keyboardType: TextInputType.name,
+              autocorrect: false,
+              validator: (val) => _validateRequired(val, 'First Name'),
+            ),
+            const SizedBox(
+              height: 17,
+            ),
+            TextFormField(
+            decoration: const InputDecoration(
+              labelText: 'Last Name',
+              filled: true,
+              isDense: true,
+            ),
+            keyboardType: TextInputType.name,
+            autocorrect: false,
+              validator: (val) => _validateRequired(val, 'Last Name'),
+          ),
+            const SizedBox(
+              height: 17,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Username',
+                filled: true,
+                isDense: true,
+              ),
+              keyboardType: TextInputType.name,
+              autocorrect: false,
+              validator: (val) => _validateRequired(val, 'Username'),
+            ),
+            const SizedBox(
+              height: 17,
+            ),
             TextFormField(
               decoration: const InputDecoration(
                 labelText: 'Email',
                 filled: true,
                 isDense: true,
               ),
-              controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               autocorrect: false,
               validator: _validateEmail,
             ),
             const SizedBox(
-              height: 12,
+              height: 17,
             ),
             TextFormField(
               decoration: const InputDecoration(
@@ -65,11 +101,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 isDense: true,
               ),
               obscureText: _obscurePassword,
-              controller: _passwordController,
               validator: (val) => _validateRequired(val, 'Password'),
             ),
             const SizedBox(
-              height: 17,
+              height: 22,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -84,16 +119,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: GoogleFonts.roboto(),
                   ),
                   style:
-                      ElevatedButton.styleFrom(fixedSize: const Size(100, 35)),
+                  ElevatedButton.styleFrom(fixedSize: const Size(100, 35)),
                 ),
                 ElevatedButton(
-                  onPressed: _validateFormAndLogin,
+                  onPressed: _validateFormAndRegister,
                   child: Text(
-                    "Log-in",
+                    "Register",
                     style: GoogleFonts.roboto(),
                   ),
                   style:
-                      ElevatedButton.styleFrom(fixedSize: const Size(100, 35)),
+                  ElevatedButton.styleFrom(fixedSize: const Size(100, 35)),
                 ),
               ],
             ),
@@ -124,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return null;
   }
 
-  void _validateFormAndLogin() {
+  void _validateFormAndRegister() {
     // Get form state from the global key
     var formState = _key.currentState;
 
@@ -135,3 +170,4 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 }
+

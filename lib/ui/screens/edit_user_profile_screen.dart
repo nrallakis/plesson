@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:plesson/data/models/assistant.dart';
-import 'package:plesson/ui/components/nav_bar.dart';
-import 'package:plesson/ui/components/text_input_dialog.dart';
+import '../../data/models/assistant.dart';
+import '../components/nav_bar.dart';
+import '../components/text_input_dialog.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/repositories/subjects_repository.dart';

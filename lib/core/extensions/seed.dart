@@ -1,8 +1,8 @@
 import 'package:flutter_chat_types/flutter_chat_types.dart';
-import 'package:plesson/core/extensions/chat.dart';
-import 'package:plesson/data/models/assistant.dart';
-import 'package:plesson/data/repositories/assistants_repository.dart';
-import 'package:plesson/data/repositories/chat_repository.dart';
+import 'chat.dart';
+import '../../data/models/assistant.dart';
+import '../../data/repositories/assistants_repository.dart';
+import '../../data/repositories/chat_repository.dart';
 
 extension AssistantRepoX on AssistantRepository {
   void seed() {
@@ -142,7 +142,7 @@ final _chatSessions = [
       author: _assistants[2].toChatUser(),
       createdAt: DateTime.now().add(const Duration(minutes: 3)).millisecondsSinceEpoch,
       id: '126',
-      text: "Πήρα ΑΑΥ 11",
+      text: "Ωραίο App αυτό",
     ),
     TextMessage(
       author: _assistants[0].toChatUser(),

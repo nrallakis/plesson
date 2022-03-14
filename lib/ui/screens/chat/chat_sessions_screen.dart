@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:plesson/data/repositories/chat_repository.dart';
-import 'package:plesson/ui/components/avatar.dart';
-import 'package:plesson/ui/components/nav_bar.dart';
-import 'package:plesson/viewmodels/chat_viewmodel.dart';
 import 'package:provider/provider.dart';
-import 'package:plesson/routes.dart' as routes;
+import '../../../data/repositories/chat_repository.dart';
+import '../../components/avatar.dart';
+import '../../components/nav_bar.dart';
+import '../../../viewmodels/chat_viewmodel.dart';
+import '../../../routes.dart' as routes;
 
 class ChatSessionsScreen extends StatelessWidget {
   const ChatSessionsScreen({Key? key}) : super(key: key);

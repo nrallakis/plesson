@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../routes.dart';
+import '../../../routes.dart';
 
 class OpeningScreen extends StatelessWidget {
   const OpeningScreen({Key? key}) : super(key: key);

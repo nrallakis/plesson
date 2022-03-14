@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:plesson/data/models/assistant.dart';
-import 'package:plesson/ui/components/assistant_personal_info.dart';
-import 'package:plesson/ui/components/assistant_preview.dart';
-import 'package:plesson/ui/components/subject_chips.dart';
-import 'package:plesson/routes.dart' as routes;
+import '../../data/models/assistant.dart';
+import '../components/assistant_personal_info.dart';
+import '../components/assistant_preview.dart';
+import '../components/subject_chips.dart';
+import '../../routes.dart' as routes;
 import 'package:provider/provider.dart';
 
 import '../components/nav_bar.dart';

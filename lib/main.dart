@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:plesson/core/extensions/seed.dart';
-import 'package:plesson/data/repositories/assistants_repository.dart';
-import 'package:plesson/data/repositories/subjects_repository.dart';
-import 'package:plesson/viewmodels/chat_viewmodel.dart';
-import 'package:plesson/viewmodels/bookmarked_assistants_viewmodel.dart';
-import 'package:plesson/viewmodels/search_assistants_viewmodel.dart';
+import 'core/extensions/seed.dart';
+import 'data/repositories/assistants_repository.dart';
+import 'data/repositories/subjects_repository.dart';
+import 'viewmodels/chat_viewmodel.dart';
+import 'viewmodels/bookmarked_assistants_viewmodel.dart';
+import 'viewmodels/search_assistants_viewmodel.dart';
 import 'package:provider/provider.dart';
 import 'data/repositories/chat_repository.dart';
 import 'routes.dart' as routes;

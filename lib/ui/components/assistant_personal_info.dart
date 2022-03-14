@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plesson/data/models/assistant.dart';
+import '../../data/models/assistant.dart';
 
 import 'info_card.dart';
 import 'label_swipe.dart';

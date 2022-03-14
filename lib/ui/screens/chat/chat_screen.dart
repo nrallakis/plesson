@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
-import 'package:plesson/data/models/assistant.dart';
-import 'package:plesson/data/repositories/chat_repository.dart';
-import 'package:plesson/viewmodels/chat_viewmodel.dart';
 import 'package:provider/provider.dart';
+import '../../../data/models/assistant.dart';
+import '../../../data/repositories/chat_repository.dart';
+import '../../../viewmodels/chat_viewmodel.dart';
 
-import '../components/nav_bar.dart';
+import '../../components/nav_bar.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({Key? key, required this.assistant}) : super(key: key);

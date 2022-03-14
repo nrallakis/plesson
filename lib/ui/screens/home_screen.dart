@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:plesson/ui/screens/bookmarked_assistants_screen.dart';
-import 'package:plesson/ui/screens/search_asssistants_screen.dart';
+import 'bookmarked_assistants_screen.dart';
+import 'search_asssistants_screen.dart';
 
-import 'chat_sessions_screen.dart';
+import 'chat/chat_sessions_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

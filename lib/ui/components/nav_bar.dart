@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:plesson/data/models/assistant.dart';
-import 'package:plesson/routes.dart' as routes;
 import 'package:provider/provider.dart';
+import '../../data/models/assistant.dart';
+import '../../routes.dart' as routes;
 
 import 'avatar.dart';
 

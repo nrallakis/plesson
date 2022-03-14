@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plesson/ui/components/assistant_card.dart';
-import 'package:plesson/viewmodels/bookmarked_assistants_viewmodel.dart';
+import '../components/assistant_card.dart';
+import '../../viewmodels/bookmarked_assistants_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 import '../../routes.dart' as routes;

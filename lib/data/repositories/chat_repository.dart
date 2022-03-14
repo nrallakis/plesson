@@ -1,6 +1,6 @@
 import 'package:flutter_chat_types/flutter_chat_types.dart';
-import 'package:plesson/core/extensions/helpers.dart';
-import 'package:plesson/data/models/assistant.dart';
+import '../../core/extensions/helpers.dart';
+import '../models/assistant.dart';
 
 class ChatRepository {
   late List<ChatSession> chatSessions;

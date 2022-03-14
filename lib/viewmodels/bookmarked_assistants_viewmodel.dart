@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plesson/data/models/assistant.dart';
-import 'package:plesson/data/repositories/assistants_repository.dart';
+import '../data/models/assistant.dart';
+import '../data/repositories/assistants_repository.dart';
 
 class BookmarkedAssistantsViewModel extends ChangeNotifier {
   late AssistantRepository _repository;

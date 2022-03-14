@@ -1,8 +1,8 @@
 import 'dart:collection';
 import 'dart:convert';
 
-import 'package:plesson/core/extensions/seed.dart';
-import 'package:plesson/data/models/assistant.dart';
+import '../../core/extensions/seed.dart';
+import '../models/assistant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const currentUserKey = "current_user_json";
