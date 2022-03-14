@@ -23,6 +23,7 @@ final seedUser = Assistant(
   email: 'nrallakis4@gmail.com',
   linkedIn: 'Nicholas Rallakis',
   facebook: 'Nicholas Rallakis',
+  imagePath: 'assets/images/nick.jpg'
 );
 
 extension ChatRepoX on ChatRepository {
@@ -46,6 +47,7 @@ final _assistants = [
     email: 'alextsafos@gmail.com',
     linkedIn: 'Alex Tsafos',
     facebook: 'Alex Tsafos',
+    imagePath: 'assets/images/alex.jpg'
   ),
   Assistant(
     id: 1,
@@ -59,8 +61,9 @@ final _assistants = [
     title: 'Physicist',
     subjects: ['Physics', 'Maths'],
     email: 'alextsafos@gmail.com',
-    linkedIn: 'Alex Tsafos',
-    facebook: 'Alex Tsafos',
+    linkedIn: 'Andreas Vatistas',
+    facebook: 'Andreas Vatistas',
+    imagePath: 'assets/images/andreas.jpg'
   ),
   Assistant(
     id: 2,
@@ -140,7 +143,7 @@ final _chatSessions = [
   ChatSession(from: _assistants[2], messages: [
     TextMessage(
       author: _assistants[2].toChatUser(),
-      createdAt: DateTime.now().add(const Duration(minutes: 3)).millisecondsSinceEpoch,
+      createdAt: DateTime.now().add(const Duration(hours: 3)).millisecondsSinceEpoch,
       id: '126',
       text: "Ωραίο App αυτό",
     ),

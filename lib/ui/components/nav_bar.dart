@@ -29,7 +29,7 @@ class _NavBarState extends State<NavBar>{
           onTap: () {
             Navigator.pushNamed(context, routes.userProfile);
           },
-          child: Avatar(name: user.firstName, size: 40,),
+          child: Avatar(name: user.firstName, size: 40, imagePath: user.imagePath),
         ),
     ]);
   }

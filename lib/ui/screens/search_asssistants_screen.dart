@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:plesson/ui/components/assistant_card.dart';
-import 'package:plesson/viewmodels/search_assistants_viewmodel.dart';
 import 'package:provider/provider.dart';
+import '../components/assistant_card.dart';
+import '../../viewmodels/search_assistants_viewmodel.dart';
 
 import '../../routes.dart' as routes;
 import '../components/nav_bar.dart';
@@ -17,73 +16,60 @@ class SearchAssistantsScreen extends StatelessWidget {
 
     int itemCount = viewModel.filteredAssistants.length;
 
-    if (itemCount == 0) {
-      return const Center(child: Text('No assistants found :/'));
-    }
-
     return Scaffold(
       appBar: const NavBar(pageName: 'Search'),
       body: ListView(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TypeAheadField(
-              textFieldConfiguration: TextFieldConfiguration(
-                  controller: viewModel.searchController,
-                  autofocus: true,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Theme.of(context).primaryColor),
-                    ),
-                  )),
-              suggestionsCallback: (pattern) {
-                return viewModel.suggestions.where((e) => e.toLowerCase().startsWith(pattern.toLowerCase()));
+            child: Autocomplete<String>(
+              optionsBuilder: (TextEditingValue textEditingValue) {
+                return viewModel.suggestions.where((String option) {
+                  return option.toLowerCase().startsWith(textEditingValue.text.toLowerCase());
+                });
               },
-              itemBuilder: (context, suggestion) => ListTile(
-                title: Text(suggestion.toString()),
-              ),
-              onSuggestionSelected: (String suggestion) => viewModel.onSearchChanged(),
-            ),
-          ),
-          _buildCategories(context),
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: const ScrollPhysics(),
-              itemCount: itemCount,
-              itemBuilder: (BuildContext context, int index) {
-                return AssistantCard(
-                  assistant: viewModel.filteredAssistants[index],
-                  isBookmarked: viewModel.userHasBookmarked(viewModel.filteredAssistants[index]),
-                  onMessageTapped: () {
-                    /* Open message page with assistant */
-                    Navigator.pushNamed(context, routes.chat, arguments: viewModel.filteredAssistants[index]);
-                  },
-                  onMoreInfoTapped: () {
-                    /* Open assistant details page */
-                    Navigator.pushNamed(context, routes.assistant,
-                        arguments: viewModel.filteredAssistants[index]);
-                  },
-                  onBookmarkTapped: () {
-                    viewModel.onBookmarkTapped(viewModel.filteredAssistants[index]);
-                  },
-                );
+
+              onSelected: (String selection) {
+                viewModel.onSearchChanged(selection);
               },
             ),
           ),
+          const CategoriesGrid(),
+          if (itemCount > 0) _buildList(viewModel)
+          else const Center(child: Text("No assistants found"))
         ],
       ),
     );
   }
-}
 
-void _onSelectCategory(Category category) {
-  // do nothing for now
+  Widget _buildList(SearchAssistantsViewModel viewModel) {
+    return Expanded(
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const ScrollPhysics(),
+        itemCount: viewModel.filteredAssistants.length,
+        itemBuilder: (BuildContext context, int index) {
+          return AssistantCard(
+            assistant: viewModel.filteredAssistants[index],
+            isBookmarked: viewModel.userHasBookmarked(viewModel.filteredAssistants[index]),
+            onMessageTapped: () {
+              // Open message page with assistant
+              Navigator.pushNamed(context, routes.chat, arguments: viewModel.filteredAssistants[index]);
+            },
+            onMoreInfoTapped: () {
+              // Open assistant details page
+              Navigator.pushNamed(context, routes.assistant,
+                  arguments: viewModel.filteredAssistants[index]);
+            },
+            onBookmarkTapped: () {
+              viewModel.onBookmarkTapped(viewModel.filteredAssistants[index]);
+            },
+          );
+        },
+      ),
+    );
+  }
+
 }
 
 final categories = [
@@ -95,26 +81,34 @@ final categories = [
   Category(name: 'Algorithms'),
 ];
 
-Widget _buildCategories(BuildContext context) {
-  return GridView.builder(
-    shrinkWrap: true,
-    physics: const NeverScrollableScrollPhysics(),
-    padding: const EdgeInsets.fromLTRB(28, 22, 28, 42),
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 2,
-      crossAxisSpacing: 10,
-      childAspectRatio: 4.6,
-      mainAxisSpacing: 15,
-    ),
-    itemCount: categories.length,
-    itemBuilder: (context, index) {
-      return CategoryCard(
-        category: categories[index],
-        onPress: () => _onSelectCategory(categories[index]),
-      );
-    },
-  );
+class CategoriesGrid extends StatelessWidget {
+  const CategoriesGrid({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final viewModel = context.read<SearchAssistantsViewModel>();
+
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.fromLTRB(28, 22, 28, 42),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10,
+        childAspectRatio: 4.6,
+        mainAxisSpacing: 15,
+      ),
+      itemCount: categories.length,
+      itemBuilder: (context, index) {
+        return CategoryCard(
+          category: categories[index],
+          onPress: () => viewModel.onSearchChanged(categories[index].name),
+        );
+      },
+    );
+  }
 }
+
 
 class Category {
   final String name;

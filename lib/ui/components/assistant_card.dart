@@ -29,7 +29,7 @@ class AssistantCard extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              leading: Avatar(name: assistant.firstName),
+              leading: Avatar(name: assistant.firstName, imagePath: assistant.imagePath),
               title: Text(
                 assistant.fullName,
                 style: const TextStyle(fontWeight: FontWeight.w600),

@@ -24,6 +24,7 @@ class AssistantPreview extends StatelessWidget {
           child: Avatar(
             name: assistant.firstName,
             size: 100,
+            imagePath: assistant.imagePath,
           ),
         ),
         const SizedBox(width: 20),

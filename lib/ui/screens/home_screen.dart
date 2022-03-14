@@ -13,8 +13,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _pages = const [
-    BookmarkedAssistantsScreen(),
     SearchAssistantsScreen(),
+    BookmarkedAssistantsScreen(),
     ChatSessionsScreen(),
   ];
 
@@ -30,8 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white.withOpacity(0.74),
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.bookmark, size: 30), label: 'Saved'),
           BottomNavigationBarItem(icon: Icon(Icons.search, size: 30), label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(Icons.bookmark, size: 30), label: 'Saved'),
           BottomNavigationBarItem(icon: Icon(Icons.message, size: 30), label: 'Messages'),
         ],
         currentIndex: _index,

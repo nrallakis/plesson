@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:plesson/data/models/assistant.dart';
-import 'package:plesson/data/repositories/assistants_repository.dart';
-import 'package:plesson/data/repositories/subjects_repository.dart';
+import '../data/models/assistant.dart';
+import '../data/repositories/assistants_repository.dart';
+import '../data/repositories/subjects_repository.dart';
 
 class SearchAssistantsViewModel extends ChangeNotifier {
   late AssistantRepository _assistantsRepo;
@@ -14,24 +14,17 @@ class SearchAssistantsViewModel extends ChangeNotifier {
   List<Assistant> get filteredAssistants => _filteredAssistants;
 
   late List<String> suggestions;
-  late TextEditingController _searchController;
 
   SearchAssistantsViewModel(AssistantRepository assistantsRepo, SubjectsRepository subjectsRepo) {
     _assistantsRepo = assistantsRepo;
     _subjectsRepo = subjectsRepo;
     _filteredAssistants = _assistantsRepo.assistants;
     suggestions = [..._subjectsRepo.getAllSubjects(), ...subjectsRepo.keywords];
-
-    _searchController = TextEditingController();
-    _searchController.addListener(onSearchChanged);
   }
 
-  get searchController => _searchController;
-
-  void onSearchChanged() {
-    final String query = _searchController.text.toUpperCase();
+  void onSearchChanged(String selection) {
     _filteredAssistants = assistants
-        .where((assistant) => assistant.subjects.where((s) => s.startsWith(query)).toList().isNotEmpty)
+        .where((assistant) => assistant.subjects.where((s) => s.startsWith(selection)).toList().isNotEmpty)
         .toList();
     notifyListeners();
   }
