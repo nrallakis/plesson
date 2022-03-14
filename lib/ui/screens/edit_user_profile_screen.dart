@@ -1,20 +1,20 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:plesson/data/models/assistant.dart';
-import 'package:plesson/routes.dart' as routes;
 import 'package:plesson/ui/components/nav_bar.dart';
 import 'package:plesson/ui/components/text_input_dialog.dart';
+import 'package:provider/provider.dart';
 
 import '../../data/repositories/subjects_repository.dart';
 import '../components/subject_chips.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  final Assistant user;
 
-  const EditProfileScreen({Key? key, required this.user}) : super(key: key);
+  const EditProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Assistant user = context.watch<Assistant>();
+
     return Scaffold(
       appBar: const NavBar(pageName: 'Edit Profile', showAvatar: false),
       body: Padding(
@@ -56,16 +56,16 @@ class EditProfileScreen extends StatelessWidget {
                 user.facebook = facebook;
               },
             ),
-            SizedBox(height: 10),
-Row(
-  mainAxisAlignment: MainAxisAlignment.start,
-  children: [
-        const Text(
-          "Add a Subject",
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-  ],
-),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [
+                Text(
+                  "Add a Subject",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
             Autocomplete<String>(
               optionsBuilder: (TextEditingValue textEditingValue) {
                 if (textEditingValue.text == '') {
@@ -80,10 +80,10 @@ Row(
                 user.addSubject(selection);
               },
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Subjects(
               subjects: user.subjects,
-              removeButton: true,
+              removable: true,
             ),
           ],
         ),
@@ -108,14 +108,12 @@ class _ListEditTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: ListTile(
-            title: Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Text(
-                description,
-                style: const TextStyle(fontWeight: FontWeight.normal)),
-          ),
+        title: Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text(description, style: const TextStyle(fontWeight: FontWeight.normal)),
+      ),
       onTap: () => _openInputDialog(context),
     );
   }

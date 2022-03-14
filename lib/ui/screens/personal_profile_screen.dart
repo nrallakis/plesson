@@ -16,7 +16,7 @@ class UserProfileScreen extends StatelessWidget {
     Assistant user = context.watch<Assistant>();
 
     return Scaffold(
-      appBar: NavBar(pageName: 'Personal Profile', showAvatar: false),
+      appBar: const NavBar(pageName: 'Personal Profile', showAvatar: false),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -34,7 +34,7 @@ class UserProfileScreen extends StatelessWidget {
                 children: [
                   const SizedBox(width: 8),
                   FloatingActionButton.extended(
-                    onPressed: () => { Navigator.pushNamed(context, routes.userProfileEdit, arguments: user)},
+                    onPressed: () => { Navigator.pushNamed(context, routes.userProfileEdit) },
                     icon: const Icon(Icons.edit),
                     label: const Text('Edit'),
                     backgroundColor: Theme.of(context).primaryColorDark,
