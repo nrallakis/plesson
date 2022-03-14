@@ -49,7 +49,7 @@ class _NavigationPageState extends State<NavigationPage> {
                 textTheme: GoogleFonts.robotoTextTheme(),
               ),
               onGenerateRoute: routes.generateRoute,
-              initialRoute: routes.home,
+              initialRoute: routes.openingScreen,
             );
           }
         }

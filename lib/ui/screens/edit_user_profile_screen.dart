@@ -77,7 +77,7 @@ class EditProfileScreen extends StatelessWidget {
                 });
               },
               onSelected: (String selection) {
-                user.addSubject(selection);
+                (!user.subjects.contains(selection))?user.addSubject(selection):null;
               },
             ),
             const SizedBox(height: 40),
