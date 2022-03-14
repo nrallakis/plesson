@@ -15,14 +15,6 @@ class EditProfileSubjects extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BookmarkedAssistantsViewModel viewModel = context.watch<BookmarkedAssistantsViewModel>();
-
-    final itemCount = viewModel.bookmarkedAssistants.length;
-
-    if (itemCount == 0) {
-      return const Center(child: Text('No bookmarked assistants :)'));
-    }
-
     return Scaffold(
       appBar: NavBar(pageName: 'Personal Profile', showAvatar: false),
       body: Padding(
@@ -33,24 +25,7 @@ class EditProfileSubjects extends StatelessWidget {
             Subjects(
               subjects: user.subjects,
               removeButton: true,
-              onDeletedTapped: (){
-              },
             ),
-            Expanded(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const SizedBox(width: 8),
-                  FloatingActionButton.extended(
-                    onPressed: () => { Navigator.pushNamed(context, routes.userProfileEdit, arguments: user)},
-                    icon: const Icon(Icons.edit),
-                    label: const Text('Edit'),
-                    backgroundColor: Theme.of(context).primaryColorDark,
-                  ),
-                ],
-              ),
-            )
           ],
         ),
       ),

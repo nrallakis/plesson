@@ -87,12 +87,12 @@ void _onSelectCategory(Category category) {
 }
 
 final categories = [
-  Category(name: 'Maths', color: Colors.teal),
-  Category(name: 'Physics', color: Colors.red),
-  Category(name: 'UI/UX', color: Colors.blue),
-  Category(name: 'Flutter', color: Colors.yellow),
-  Category(name: 'Operating Systems', color: Colors.purple),
-  Category(name: 'Algorithms', color: Colors.brown),
+  Category(name: 'Maths'),
+  Category(name: 'Physics'),
+  Category(name: 'UI/UX'),
+  Category(name: 'Flutter'),
+  Category(name: 'Operating Systems'),
+  Category(name: 'Algorithms'),
 ];
 
 Widget _buildCategories(BuildContext context) {
@@ -120,7 +120,7 @@ class Category {
   final String name;
   final Color color;
 
-  Category({required this.name, required this.color});
+  Category({required this.name, this.color = Colors.teal});
 }
 
 class CategoryCard extends StatelessWidget {

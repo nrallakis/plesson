@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../../data/models/assistant.dart';
 
 class Subjects extends StatelessWidget {
   final bool removeButton;
-  final VoidCallback? onDeletedTapped;
 
-  const Subjects({Key? key, required this.subjects, this.removeButton = false, this.onDeletedTapped})
+  const Subjects({Key? key, required this.subjects,
+    this.removeButton = false,
+  })
       : super(key: key);
 
   final List<String> subjects;
@@ -44,7 +48,10 @@ class Subjects extends StatelessWidget {
               // isBookmarked ? Icons.bookmark : Icons.bookmark_border
               deleteIcon: (removeButton) ? Icon(Icons.cancel) : null,
               deleteIconColor: (removeButton) ? Colors.white60 : null,
-              onDeleted: (removeButton) ? onDeletedTapped : null,
+              onDeleted: (removeButton) ? () {
+                Assistant user = context.read<Assistant>();
+                user.removeSubject(subject);
+              } : null,
             ))
         .toList();
   }
