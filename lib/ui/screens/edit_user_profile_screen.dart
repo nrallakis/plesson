@@ -4,6 +4,9 @@ import 'package:plesson/routes.dart' as routes;
 import 'package:plesson/ui/components/nav_bar.dart';
 import 'package:plesson/ui/components/text_input_dialog.dart';
 
+import '../../data/repositories/subjects_repository.dart';
+import '../components/subject_chips.dart';
+
 class EditProfileScreen extends StatelessWidget {
   final Assistant user;
 
@@ -32,30 +35,47 @@ class EditProfileScreen extends StatelessWidget {
               },
             ),
             _ListEditTile(
-              title: 'Contact',
-              description: 'Change your displayed contact card',
-              valueChanged: (String value) {},
+              title: 'E-mail',
+              description: 'Change your displayed e-mail address',
+              valueChanged: (String email) {
+                user.email = email;
+              },
             ),
             _ListEditTile(
-              title: 'Education',
-              description: 'Change your displayed education card',
-              valueChanged: (String value) {},
+              title: 'LinkedIn',
+              description: 'Change your displayed LinkedIn profile',
+              valueChanged: (String linkedIn) {
+                user.linkedIn = linkedIn;
+              },
             ),
-            GestureDetector(
-              child: Column(
-                children: const [
-                  Text(
-                    'Subjects',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'See and edit your subjects',
-                    style: TextStyle(),
-                  ),
-                ],
-              ),
-              onTap: () => Navigator.pushNamed(context, routes.editSubject, arguments: user),
-            )
+            _ListEditTile(
+              title: 'Facebook',
+              description: 'Change your displayed FaceBook profile',
+              valueChanged: (String facebook) {
+                user.facebook = facebook;
+              },
+            ),
+
+            Autocomplete<String>(
+              initialValue: const TextEditingValue(text: "Add a Subject"),
+              optionsBuilder: (TextEditingValue textEditingValue) {
+                if (textEditingValue.text == '') {
+                  return const Iterable<String>.empty();
+                }
+                var subjects = SubjectsRepository();
+                return subjects.getAllSubjects().where((String option) {
+                  return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                });
+              },
+              onSelected: (String selection) {
+                user.addSubject(selection);
+              },
+            ),
+            SizedBox(height: 40),
+            Subjects(
+              subjects: user.subjects,
+              removeButton: true,
+            ),
           ],
         ),
       ),
@@ -78,18 +98,15 @@ class _ListEditTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      child: Column(
-        children: [
-          Text(
-            title,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+      child: ListTile(
+            title: Text(
+              title,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            subtitle: Text(
+                description,
+                style: const TextStyle(fontWeight: FontWeight.normal)),
           ),
-          Text(
-            description,
-            style: const TextStyle(),
-          ),
-        ],
-      ),
       onTap: () => _openInputDialog(context),
     );
   }

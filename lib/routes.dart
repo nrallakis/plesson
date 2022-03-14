@@ -3,7 +3,6 @@ import 'package:plesson/data/models/assistant.dart';
 import 'package:plesson/data/repositories/chat_repository.dart';
 import 'package:plesson/ui/screens/assistant_profile_screen.dart';
 import 'package:plesson/ui/screens/chat_screen.dart';
-import 'package:plesson/ui/screens/edit_subjects.dart';
 import 'package:plesson/ui/screens/edit_user_profile_screen.dart';
 import 'package:plesson/ui/screens/home_screen.dart';
 import 'package:plesson/ui/screens/login_screen.dart';
@@ -20,7 +19,6 @@ const String savedAssistants = '/saved';
 const String assistant = '/assistant';
 const String userProfile = '/userprofile';
 const String userProfileEdit = '/userprofile/edit';
-const String editSubject = '/userprofile/edit/subjects';
 const String home = '/home';
 const String chat = '/chat';
 
@@ -42,9 +40,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/userprofile/edit':
       var user = settings.arguments as Assistant;
       return MaterialPageRoute(builder: (_) => EditProfileScreen(user: user));
-    case '/userprofile/edit/subjects':
-      var user = settings.arguments as Assistant;
-      return MaterialPageRoute(builder: (_) => EditProfileSubjects(user: user));
     case '/chat':
       var assistant = settings.arguments as Assistant;
       return MaterialPageRoute(builder: (_) => ChatScreen(assistant: assistant));
