@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:plesson/data/models/assistant.dart';
 import 'package:plesson/routes.dart' as routes;
@@ -55,9 +56,17 @@ class EditProfileScreen extends StatelessWidget {
                 user.facebook = facebook;
               },
             ),
-
+            SizedBox(height: 10),
+Row(
+  mainAxisAlignment: MainAxisAlignment.start,
+  children: [
+        const Text(
+          "Add a Subject",
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+  ],
+),
             Autocomplete<String>(
-              initialValue: const TextEditingValue(text: "Add a Subject"),
               optionsBuilder: (TextEditingValue textEditingValue) {
                 if (textEditingValue.text == '') {
                   return const Iterable<String>.empty();
