@@ -6,7 +6,6 @@ import '../../viewmodels/search_assistants_viewmodel.dart';
 import '../../routes.dart' as routes;
 import '../components/nav_bar.dart';
 
-
 class SearchAssistantsScreen extends StatelessWidget {
   const SearchAssistantsScreen({Key? key}) : super(key: key);
 
@@ -43,42 +42,40 @@ class SearchAssistantsScreen extends StatelessWidget {
   }
 
   Widget _buildList(SearchAssistantsViewModel viewModel) {
-    return Expanded(
-      child: ListView.builder(
-        shrinkWrap: true,
-        physics: const ScrollPhysics(),
-        itemCount: viewModel.filteredAssistants.length,
-        itemBuilder: (BuildContext context, int index) {
-          return AssistantCard(
-            assistant: viewModel.filteredAssistants[index],
-            isBookmarked: viewModel.userHasBookmarked(viewModel.filteredAssistants[index]),
-            onMessageTapped: () {
-              // Open message page with assistant
-              Navigator.pushNamed(context, routes.chat, arguments: viewModel.filteredAssistants[index]);
-            },
-            onMoreInfoTapped: () {
-              // Open assistant details page
-              Navigator.pushNamed(context, routes.assistant,
-                  arguments: viewModel.filteredAssistants[index]);
-            },
-            onBookmarkTapped: () {
-              viewModel.onBookmarkTapped(viewModel.filteredAssistants[index]);
-            },
-          );
-        },
-      ),
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const ScrollPhysics(),
+      itemCount: viewModel.filteredAssistants.length,
+      itemBuilder: (BuildContext context, int index) {
+        return AssistantCard(
+          assistant: viewModel.filteredAssistants[index],
+          isBookmarked: viewModel.userHasBookmarked(viewModel.filteredAssistants[index]),
+          onMessageTapped: () {
+            // Open message page with assistant
+            Navigator.pushNamed(context, routes.chat, arguments: viewModel.filteredAssistants[index]);
+          },
+          onMoreInfoTapped: () {
+            // Open assistant details page
+            Navigator.pushNamed(context, routes.assistant,
+                arguments: viewModel.filteredAssistants[index]);
+          },
+          onBookmarkTapped: () {
+            viewModel.onBookmarkTapped(viewModel.filteredAssistants[index]);
+          },
+        );
+      },
     );
   }
 
 }
 
 final categories = [
-  Category(name: 'Maths'),
+  Category(name: 'All'),
   Category(name: 'Physics'),
-  Category(name: 'UI/UX'),
-  Category(name: 'Flutter'),
-  Category(name: 'Operating Systems'),
-  Category(name: 'Algorithms'),
+  Category(name: 'Robotics'),
+  Category(name: 'Maths'),
+  Category(name: 'Microprocessors'),
+  Category(name: 'Compilers'),
 ];
 
 class CategoriesGrid extends StatelessWidget {
@@ -136,7 +133,7 @@ class CategoryCard extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           clipBehavior: Clip.antiAlias,
           child: InkWell(
-            splashColor: Colors.white10,
+            splashColor: Colors.white54,
             highlightColor: Colors.white10,
             onTap: onPress,
             child: _CardContent(category.name),

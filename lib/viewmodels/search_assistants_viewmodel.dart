@@ -23,6 +23,12 @@ class SearchAssistantsViewModel extends ChangeNotifier {
   }
 
   void onSearchChanged(String selection) {
+    if (selection.toLowerCase() == "all") {
+      _filteredAssistants = assistants;
+      notifyListeners();
+      return;
+    }
+
     _filteredAssistants = assistants
         .where((assistant) => assistant.subjects.where((s) => s.startsWith(selection)).toList().isNotEmpty)
         .toList();
