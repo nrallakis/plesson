@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
 import '../../data/models/assistant.dart';
+import '../../routes.dart' as routes;
 import '../components/assistant_personal_info.dart';
 import '../components/assistant_preview.dart';
-import '../../routes.dart' as routes;
-import '../components/subject_chips.dart';
-
 import '../components/nav_bar.dart';
+import '../components/subject_chips.dart';
 
 class AssistantProfileScreen extends StatelessWidget {
   final Assistant assistant;
@@ -92,11 +92,11 @@ class AssistantProfileScreen extends StatelessWidget {
                 onRatingUpdate: (rating) {},
               ),
             ),
+            const SizedBox(height: 16),
+            ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text("OK"))
           ],
         );
       },
     );
   }
 }
-
-

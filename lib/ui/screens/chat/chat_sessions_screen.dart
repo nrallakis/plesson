@@ -40,6 +40,7 @@ class ChatListTile extends StatelessWidget {
     return ListTile(
       leading: Avatar(
         name: session.from.fullName,
+        imagePath: session.from.imagePath,
       ),
       title: Text(session.from.fullName),
       subtitle: Text(session.lastMessage),

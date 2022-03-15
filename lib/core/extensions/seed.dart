@@ -143,7 +143,7 @@ final _chatSessions = [
   ChatSession(from: _assistants[2], messages: [
     TextMessage(
       author: _assistants[2].toChatUser(),
-      createdAt: DateTime.now().add(const Duration(hours: 3)).millisecondsSinceEpoch,
+      createdAt: DateTime.now().subtract(const Duration(hours: 3)).millisecondsSinceEpoch,
       id: '126',
       text: "Ωραίο App αυτό",
     ),
