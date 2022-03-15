@@ -1,6 +1,9 @@
 # PLesson
 Find a study buddy!
 
+This project was built as an assignment for a UX course in NTUA. Most parts of the app are functinal as a demo. No rest requests are made.
+However it is architectured in a way that is very easy to add communication with a backend if needed.
+
 
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
