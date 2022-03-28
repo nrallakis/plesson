@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../core/utils.dart';
 import '../../../routes.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -53,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               autocorrect: false,
-              validator: _validateEmail,
+              validator: validateEmail,
             ),
             const SizedBox(
               height: 12,
@@ -66,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               obscureText: _obscurePassword,
               controller: _passwordController,
-              validator: (val) => _validateRequired(val, 'Password'),
+              validator: (val) => validateRequired(val, 'Password'),
             ),
             const SizedBox(
               height: 17,
@@ -101,27 +102,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-
-  String? _validateRequired(String? val, fieldName) {
-    if (val == null || val == '') {
-      return '$fieldName is required';
-    }
-    return null;
-  }
-
-  String? _validateEmail(String? value) {
-    if (value == null || value == '') {
-      return 'Email is required';
-    }
-    String pattern =
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regex = RegExp(pattern);
-
-    if (!regex.hasMatch(value)) {
-      return 'Enter valid email address';
-    }
-    return null;
   }
 
   void _validateFormAndLogin() {

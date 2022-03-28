@@ -21,9 +21,9 @@ Do you need help with your Subjects and Assignments? Do you like the feeling of 
 ## Functional Requirements:
 - Create a profile or login with an existing one
 - Chat with other members
-- Keyword searching subject categories and displaying members that can assisst in them
+- Keyword searching subject categories and displaying members that can assist in them
 - Profile display and rating of other members
-- Bookmarking assisstants and displaying bookmarked assisstants
+- Bookmarking assistants and displaying bookmarked assistants
 - Profile editing
-- Adding subjects you can assisst in
+- Adding subjects you can assist in
 - Removing subjects you have added

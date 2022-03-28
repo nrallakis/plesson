@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../core/utils.dart';
 import '../../../routes.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -50,7 +51,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               keyboardType: TextInputType.name,
               autocorrect: false,
-              validator: (val) => _validateRequired(val, 'First Name'),
+              validator: (val) => validateRequired(val, 'First Name'),
             ),
             const SizedBox(
               height: 17,
@@ -63,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             keyboardType: TextInputType.name,
             autocorrect: false,
-              validator: (val) => _validateRequired(val, 'Last Name'),
+              validator: (val) => validateRequired(val, 'Last Name'),
           ),
             const SizedBox(
               height: 17,
@@ -76,7 +77,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               keyboardType: TextInputType.name,
               autocorrect: false,
-              validator: (val) => _validateRequired(val, 'Username'),
+              validator: (val) => validateRequired(val, 'Username'),
             ),
             const SizedBox(
               height: 17,
@@ -89,7 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               keyboardType: TextInputType.emailAddress,
               autocorrect: false,
-              validator: _validateEmail,
+              validator: validateEmail,
             ),
             const SizedBox(
               height: 17,
@@ -101,7 +102,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 isDense: true,
               ),
               obscureText: _obscurePassword,
-              validator: (val) => _validateRequired(val, 'Password'),
+              validator: (val) => validateRequired(val, 'Password'),
             ),
             const SizedBox(
               height: 22,
@@ -136,27 +137,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
     );
-  }
-
-  String? _validateRequired(String? val, fieldName) {
-    if (val == null || val == '') {
-      return '$fieldName is required';
-    }
-    return null;
-  }
-
-  String? _validateEmail(String? value) {
-    if (value == null || value == '') {
-      return 'Email is required';
-    }
-    String pattern =
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regex = RegExp(pattern);
-
-    if (!regex.hasMatch(value)) {
-      return 'Enter valid email address';
-    }
-    return null;
   }
 
   void _validateFormAndRegister() {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'bookmarked_assistants_screen.dart';
-import 'search_asssistants_screen.dart';
+import 'search_assistants_screen.dart';
 
 import 'chat/chat_sessions_screen.dart';
 
